@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>更进一步地使用HTML与javascript</title>
+
+  <link rel="stylesheet" href="../external/bootstrap/css/bootstrap.css">
+  <script src="../external/jquery/js/jquery-3.2.1.js"></script>
+  <script src="../external/jquery/js/jquery-ui.js"></script>
+  <!-- jQuery中的$函数不支持直接创建svg图形，新定义$s函数仅负责创建svg图像 -->
+  <script src="../assets/js/jquery/jquery-svg.js"></script>
+</head>
+
+<body>
+  <div class="container">
+    <h1>更进一步地使用HTML与javascript</h1>
+    <h2>理解了这一页，应该就可以一边翻文档一边学习一边码代码了</h2>
+    <!--row和col都是bootstrap中的样式-->
+    <div class="row">
+      <div class="col">
+        <div>使用HTML画个矢量图</div>
+        <svg width="300" height="400" style="border:1pt solid black; ">
+          <!-- 当<x ...></x>中间没有夹任何东西时，可省略为<x ... /> -->
+          <rect x="100" y="100" width="50" height="50" fill="blue" stroke="black" stroke-width="2" />
+          <circle cx="200" cy="300" r="40" fill="red" stroke="black" stroke-width="2" />
+          <line x1="30" y1="40" x2="270" y2="360" stroke="black" stroke-width="5" />
+        </svg>
+        <div>还有其他形状，查文档吧~</div>
+      </div>
+      <div class="col">
+        <div>使用js画个矢量图，并让整体成为可拖动的（但不可拖动出&lt;body&gt;）</div>
+        <svg id="svg1" width="300" height="400" style="border:1pt solid black; "></svg>
+      </div>
+    </div>
+  </div>
+
+  <script src="index6more.js"></script>
+
+  <div class="container">
+    <a href="index5jquery.html" class="badge badge-primary">上一页</a>
+    <a href="index7hw.html" class="badge badge-primary">下一页</a>
+    <a href="index1.html" class="badge badge-primary">1</a>
+    <a href="index2css.html" class="badge badge-primary">2</a>
+    <a href="index3bootstrap.html" class="badge badge-primary">3</a>
+    <a href="index4js.html" class="badge badge-primary">4</a>
+    <a href="index5jquery.html" class="badge badge-primary">5</a>
+    <a href="index6more.html" class="badge badge-primary">6</a>
+    <a href="index7hw.html" class="badge badge-primary">7</a>
+  </div>
+
+</body>
+
+</html>

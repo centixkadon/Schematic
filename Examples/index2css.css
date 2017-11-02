@@ -1,0 +1,24 @@
+
+/* 前缀符号#表示id*/
+#id1{
+  font-size: 16pt;
+}
+
+/* 前缀符号.表示class*/
+.class_color{
+  color: red; /* red也可以用#FF0000表示 */
+  /* color: #FF0000; */
+}
+
+/* 无前缀符号：表示<>标记*/
+button{
+  background-color: #DDDDDD;
+}
+
+#id2{
+  font-size: 16pt;
+}
+
+.class_bold{
+  font-weight: 700;
+}

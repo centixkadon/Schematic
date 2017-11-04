@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Random Generator</title>
+
+</head>
+
+<body>
+  <div style="text-align:center">
+    <div style="display:inline">min(含): </div>
+    <input id="n1" />
+    <div style="display:inline-block;width:50pt"></div>
+    <div style="display:inline">max(含): </div>
+    <input id="n2" />
+  </div>
+  <div id="rd1" style="font-size:400pt;text-align:center;user-select:none;-moz-user-select:none;-khtml-user-select:none;">0</div>
+
+  <script>
+    var tid = -1;
+    var n1 = 001; // init min val
+    var n2 = 100; // init max val
+
+    document.getElementById('n1').value = n1;
+    document.getElementById('n2').value = n2;
+    document.getElementsByTagName('body')[0].onkeydown = e => {
+      if (e.keyCode === 13) {
+        if (tid === -1) {
+          n1 = Math.trunc(document.getElementById('n1').value);
+          n2 = Math.trunc(document.getElementById('n2').value) + 1;
+          tid = setInterval(function () {
+            document.getElementById('rd1').innerHTML = Math.trunc(n1 + Math.random() * (n2 - n1));
+          }, 0);
+        } else {
+          clearInterval(tid);
+          tid = -1;
+        }
+      }
+    };
+  </script>
+</body>
+
+</html>

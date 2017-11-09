@@ -1,6 +1,7 @@
 # Schematic Designer
 
 电路原理图设计软件
+[![language](https://img.shields.io/badge/language-HTML%20%7C%20JavaScript-brightgreen.svg)]()
 
 ## 一、使用说明
 

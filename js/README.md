@@ -1,7 +1,7 @@
 
 # 各模块具体要求
 
-## 元器件库结构体
+## 1. 元器件库结构体
 
 ### 主要任务
 
@@ -21,7 +21,7 @@ $('#svgTestAppendComponent1').appendComponent('vcc');
 $('#svgTestAppendComponent2').appendComponent('gnd');
 ```
 
-## 电路原理图结构体
+## 2. 电路原理图结构体
 
 ### 主要任务及说明
 

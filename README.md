@@ -4,6 +4,67 @@
 
 电路原理图设计软件
 
+## 〇、代码规范**（重要）**
+
+首先，这是一个好习惯。
+
+其次，虽然我会尽可能将各模块去耦，这样负责一个模块的人不需要看其他模块的代码，只需要知道怎么使用就行。但是我是不得不检查代码的，所以还是希望代码能够尽量一致。
+
+### 代码格式化
+
+下载
+[Visual Studio Code](https://code.visualstudio.com/docs/?dv=win)
+，安装后打开VSCode的设置（快捷键Ctrl+逗号，或者依次按Alt+F、P、S、Enter），至少将以下代码拷贝到设置中：
+
+```javascript
+{
+  "editor.tabSize": 2,
+  "editor.detectIndentation": false,
+  "editor.wrappingIndent": "indent",
+  "editor.formatOnType": true,
+  "editor.formatOnPaste": true,
+  "editor.renderWhitespace": "boundary"
+}
+```
+
+或者使用我的全部设置：
+
+```javascript
+{
+  "editor.tabSize": 2,
+  "editor.detectIndentation": false,
+  "editor.wordWrap": "on",
+  "editor.wordWrapColumn": 80,
+  "editor.wrappingIndent": "indent",
+  "editor.formatOnType": true,
+  "editor.formatOnPaste": true,
+  "editor.renderWhitespace": "boundary",
+  "window.restoreWindows": "all",
+  "window.newWindowDimensions": "maximized",
+  "workbench.colorTheme": "Default Light+"
+}
+```
+
+### 代码风格
+
+使用其它编辑器的，参照已完成的代码（特别是 js/main.js）更改编辑器代码格式化的相关设置。尽量不要使用记事本。
+
+以下规范重要性依次递减：
+
+1. 缩进使用2个空格，既不是4个空格也不是1个制表符(Tab)
+1. 正确缩进
+1. 左大括号不放置在新行
+1. 重要的变量名、函数名（特别是需要给其它模块使用的）用驼峰式命名法
+   1. 能够从名字看出其作用，类似 schComponents ， appendComponent(...)
+   1. 全局变量加 sch 前缀，避免冲突，如 schComponents
+      1. 更进一步地，使用复数形式来区分变量的收益也不小
+   1. 函数名一般包括一个谓语，一个宾语，两个完整单词造成冲突的可能性较低，所以不加前缀，如 appendComponent
+   1. 虽然作业中应该不需要自定义非匿名类，以防万一，统一成类名中各单词首字母均大写
+1. 正确使用空格和空格分隔
+1. 不要过分注释
+1. 尽量注释
+1. 行末不要留空白字符
+
 ## 一、使用说明
 
 待更新

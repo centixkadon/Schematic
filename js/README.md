@@ -53,5 +53,10 @@ drawComponent('gnd', 50, 200);
 ```javascript
 // 将以下代码复制到 js/test/test.js 中，应在 #svgSch 左上角画出一个电源。
 let componentVcc = drawComponent('vcc', -1000, -1000); // 在 #svgSch 视野外画出一个电源
-componentVcc.moveTo(50, 0);                            // 移动到 #svgSch 左上角
+componentVcc.moveTo(50, 0);                            // 移动到 #svgSch 左上角（绝对位置）
+```
+```javascript
+// 将以下代码复制到 js/test/test.js 中，应在 #svgSch 左上角画出一个电源。
+let componentVcc = drawComponent('vcc', -1000, -1000); // 在 #svgSch 视野外画出一个电源
+componentVcc.moveBy(1050, 1000);                       // 移动到 #svgSch 左上角（相对位置）
 ```

@@ -20,7 +20,23 @@
       <a href="Examples/random.html" target="_blank" class="badge badge-dark">Random</a>
     </h1>
 
-    <div id="test"></div>
+    <div id="test" style="height:100px"></div>
+
+    <svg id="svg" viewBox="0 0 1000 400">
+      <rect x="1" y="1" width="998" height="398" fill-opacity="0" stroke="black" stroke-width="1" />
+      <g id="svgAll">
+        <line x1="100" y1="0" x2="100" y2="10000" stroke="black" />
+        <g id="svgButton">
+          <text x="10" y="22" font-size="12">#svgButton</text>
+        </g>
+        <g id="svgSch" transform="translate(100 0)">
+          <text x="10" y="22" font-size="12">#svgSch</text>
+          <g id="svgTestAppendComponent1" transform="translate(50 50)"></g>
+          <g id="svgTestAppendComponent2" transform="translate(100 50)"></g>
+        </g>
+      </g>
+    </svg>
+
   </div>
   
   <script src="js/components/components.js"></script>

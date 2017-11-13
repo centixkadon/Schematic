@@ -4,64 +4,38 @@ $('#test').appendComponent('vcc');
 $('#test').appendComponent('gnd');
 
 */
-//可在绘画前设置缩放值。缩放系数为1.0时，电阻、电容等元器件尺寸为40px*40px
+//可在绘画前设置缩放系数。缩放系数为1.0时，电阻、电容等元器件尺寸尽量为40*40 (-20 ~ 20)
 
-let Component_scale = 1;//整体缩放尺寸
+let schComponents = {
+  'vcc': [
+    { mark: 'line', attr: { x1: -10, y1: -10, x2: 10, y2: -10, }, },
+    { mark: 'line', attr: { x1: 0, y1: -10, x2: 0, y2: 0, }, },
+  ],
+  'gnd': [
+    { mark: 'line', attr: { x1: 0, y1: 0, x2: 0, y2: 10, }, },
+    { mark: 'line', attr: { x1: -15, y1: 10, x2: 15, y2: 10, }, },
+    { mark: 'line', attr: { x1: -10, y1: 15, x2: 10, y2: 15, }, },
+    { mark: 'line', attr: { x1: -5, y1: 20, x2: 5, y2: 20, }, },
+  ],
+};
 
 function createObj(objAttr) {
-  let obj = $s(objAttr.mark); 
+  let obj = $s(objAttr.mark);
   for (let attrId in objAttr.attr) {
-    obj.attr(attrId, objAttr.attr[attrId]*Component_scale);
+    obj.attr(attrId, objAttr.attr[attrId]);
   }
-  obj.attr('stroke', 'black').attr( 'stroke-width', '2');
+  obj.attr('stroke', '#A00000').attr('stroke-width', '2');
   return obj;
 }
 
-jQuery.prototype.appendComponent = function (name){
-	svgObj = $s('svg');
-	svgObj.attr('width',40*Component_scale).attr('height',40*Component_scale);
-	for (let i = 0; i < Components[name].length; ++i)
-		{
-			svgObj.append(createObj(Components[name][i]));
-		}
-	this.append(svgObj);
+jQuery.prototype.appendComponent = function (componentName) {
+  svgGroup = $s('g');
+  for (let i = 0; i < schComponents[componentName].length; ++i) {
+    svgGroup.append(createObj(schComponents[componentName][i]));
+  }
+  return this.append(svgGroup);
 }
-/////////以上不修改//////////////////////////////////////////////////////////
 
-
-
-let Components = {
-	'vcc': [ 
-			{
-				mark: 'line',
-				attr: { x1: 10, y1:  5, x2: 30, y2:  5, },
-			},
-			{
-				mark: 'line',  
-				attr: { x1: 20, y1:  5, x2: 20, y2: 30, },
-		  
-			},	  
-		],
-	'gnd': [ 
-			{
-				mark: 'line',
-				attr: { x1: 20, y1:  0, x2: 20, y2: 20, },
-			},
-			{
-				mark: 'line',
-				attr: { x1:  5, y1: 20, x2: 35, y2: 20, },
-			},
-			{
-				mark: 'line',
-				attr: { x1: 10, y1: 25, x2: 30, y2: 25, },
-			},
-			{
-				mark: 'line',
-				attr: { x1: 15, y1: 30, x2: 25, y2: 30, },
-			},
-		],
-};
-
-$('#test').appendComponent('vcc');
-$('#test').appendComponent('gnd');
-
+function setComponentsScale(s) {
+  $('#svgAll').attr('transform', 'scale(' + s + ')');
+}

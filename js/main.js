@@ -1,6 +1,4 @@
 
-// for main
-
 /***** 元器件库结构体 *****/
 /* 说明
 主要任务：
@@ -14,9 +12,9 @@
 
 */
 /* 预期目标1
-// 将以下代码复制到 js/test/test.js 中，应在 #test 画出一个电源，一个地。
-$('#test').appendComponent('vcc');
-$('#test').appendComponent('gnd');
+// 将以下代码复制到 js/test/test.js 中，应画出一个电源，一个地。
+$('#svgTestAppendComponent1').appendComponent('vcc');
+$('#svgTestAppendComponent2').appendComponent('gnd');
 
 */
 
@@ -27,3 +25,15 @@ drawComponent('vcc', 0, 0);
 drawComponent('gnd', 0, 200);
 
 */
+
+/***** 以上均为注释，从这里开始运行 *****/
+// 保持电路原理图大小合适
+let windowResize = function () {
+  let w = $('h1').innerWidth();
+  $('#svg').attr('width', w);
+  $('#svg').attr('height', w * 400 / 1000);
+}
+$(window).resize(ev => windowResize());
+windowResize();
+
+setComponentsScale(1);

@@ -65,6 +65,14 @@
 1. 尽量注释
 1. 行末不要留空白字符
 
+## 〇〇〇 git的使用 〇〇〇
+
+git和Github不一样。git是代码版本控制系统的命令行程序，Github相当于提供云端备份。
+
+包括git的下载、添加User Name和Email Address信息、修改文件编码、clone、stage change、commit、push、fetch、merge等，具体可自行搜索用法。
+
+安装从[git下载地址](https://git-scm.com/download/win)下载的安装包后会包括Git CMD、Git Bash和Git GUI，前两者是命令行，Git GUI相当于常用命令的可视化界面。
+
 ## 一、使用说明
 
 待更新

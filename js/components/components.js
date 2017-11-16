@@ -1,10 +1,3 @@
-/* 预期目标1
-// 将以下代码复制到 js/test/test.js 中，应在 #test 画出一个电源，一个地。
-$('#test').appendComponent('vcc');
-$('#test').appendComponent('gnd');
-
-*/
-//可在绘画前设置缩放系数。缩放系数为1.0时，电阻、电容等元器件尺寸尽量为40*40 (-20 ~ 20)
 
 let schComponents = {
   'vcc': [

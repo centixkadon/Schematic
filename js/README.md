@@ -19,6 +19,9 @@
 // 将以下代码复制到 js/test/test.js 中，应画出一个电源，一个地，并返回调用appendComponent的jQuery对象。
 $('#svgTestAppendComponent1').appendComponent('vcc');
 $('#svgTestAppendComponent2').appendComponent('gnd');
+// 将以下代码复制到 js/test/test.js 中，应在schComponents结构体中添加相应的线（或者其他svg元素）构成的元器件地和电源数组。
+appendToSchComponents("gnd").add("line",0,0,0,10).add("line",-15,10,15,10).add("line",-10,15,10,15).add("line",-5,20,5,20);
+appendToSchComponents("vcc").add("line",-10,-10,10,-10,0,-10,0,0);
 ```
 
 ## 2. 电路原理图结构体

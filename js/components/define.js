@@ -6,13 +6,13 @@ add()目前可以添加直线，曲线，圆，多边形，矩形。。。。要
 参数对应看svg构建对应图形需要什么参数 
 */
 
-function appendToSchComponents(componentName) {
+function defineComponent(componentName) {
   obj = new Array();
   schComponents[componentName] = obj;
   return obj;
 }
 
-Array.prototype.add = function(name) {
+Array.prototype.has = function(name) {
   var count = (arguments.length-1)/4;
   var array = new Array();
   switch(name) {

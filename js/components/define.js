@@ -12,22 +12,32 @@ function defineComponent(componentName) {
   return obj;
 }
 
-Array.prototype.has = function(name) {
-  var count = (arguments.length-1)/4;
-  var array = new Array();
-  switch(name) {
+Array.prototype.has = function (name) {
+  var count = (arguments.length - 1) / 4;
+  switch (name) {
+    /*
     case "line":
-      for(i=0;i<count;i++){   
+      for (i = 0; i < count; i++) {
         var temp = new Object();
         temp.mark = name;
         temp.attr = new Object();
-        temp.attr.x1 = arguments[4*i+1];
-        temp.attr.y1 = arguments[4*i+2];
-        temp.attr.x2 = arguments[4*i+3];
-        temp.attr.y2 = arguments[4*i+4]; 
+        temp.attr.x1 = arguments[4 * i + 1];
+        temp.attr.y1 = arguments[4 * i + 2];
+        temp.attr.x2 = arguments[4 * i + 3];
+        temp.attr.y2 = arguments[4 * i + 4];
         this.push(temp);
       }
       break;
+    希望修改成以下示例： */
+    case 'line':
+      for (let i = 1; i < arguments.length; ++i){
+        if (!((arguments[i] instanceof Array) && (arguments[i].length === 4))) throw 'error';
+        this.push({
+          mark: name,
+          attr: { x1: arguments[i][0], y1: arguments[i][1], x2: arguments[i][2], y2: arguments[i][3], },
+        });
+      }
+      break;  
     case "polyline":
       var temp = new Object();
       temp.mark = name;

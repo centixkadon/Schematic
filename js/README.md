@@ -19,9 +19,11 @@
 // 将以下代码复制到 js/test/test.js 中，应画出一个电源，一个地，并返回调用appendComponent的jQuery对象。
 $('#svgTestAppendComponent1').appendComponent('vcc');
 $('#svgTestAppendComponent2').appendComponent('gnd');
+```
+```javascript
 // 将以下代码复制到 js/test/test.js 中，应在schComponents结构体中添加相应的线（或者其他svg元素）构成的元器件地和电源数组。
-appendToSchComponents("gnd").add("line",0,0,0,10).add("line",-15,10,15,10).add("line",-10,15,10,15).add("line",-5,20,5,20);
-appendToSchComponents("vcc").add("line",-10,-10,10,-10,0,-10,0,0);
+defineComponent('vcc').has('line', [-10, -10, 10, -10]).has('line', [0, -10, 0, 0]);
+defineComponent('gnd').has('line', [0, 0, 0, 10], [-15, 10, 15, 10], [-10, 15, 10, 15], [-5, 20, 5, 20]);
 ```
 
 ## 2. 电路原理图结构体
@@ -55,11 +57,11 @@ drawComponent('gnd', 50, 200);
 
 ```javascript
 // 将以下代码复制到 js/test/test.js 中，应在 #svgSch 左上角画出一个电源。
-let componentVcc = drawComponent('vcc', -1000, -1000); // 在 #svgSch 视野外画出一个电源
-componentVcc.moveTo(50, 0);                            // 移动到 #svgSch 左上角（绝对位置）
+let componentVcc = drawComponent('vcc', -1000, -1000); // 在 #svgSch 视野外画出一个电源，返回对应的jQuery对象
+componentVcc.moveTo(50, 50);                           // 移动到 #svgSch 左上角（绝对位置）
 ```
 ```javascript
 // 将以下代码复制到 js/test/test.js 中，应在 #svgSch 左上角画出一个电源。
-let componentVcc = drawComponent('vcc', -1000, -1000); // 在 #svgSch 视野外画出一个电源
-componentVcc.moveBy(1050, 1000);                       // 移动到 #svgSch 左上角（相对位置）
+let componentVcc = drawComponent('vcc', 100, 100);     // 在 #svgSch 视野内画出一个电源，返回对应的jQuery对象
+componentVcc.moveBy(-50, -50);                         // 移动到 #svgSch 左上角（相对位置）
 ```

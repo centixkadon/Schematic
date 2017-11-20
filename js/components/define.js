@@ -7,14 +7,24 @@ add()目前可以添加直线，曲线，圆，多边形，矩形。。。。要
 */
 
 function defineComponent(componentName) {
-  obj = new Array();
-  schComponents[componentName] = obj;
-  return obj;
+  component = [];
+  schComponents[componentName] = component;
+  return component;
 }
 
 Array.prototype.has = function (name) {
-  var count = (arguments.length - 1) / 4;
   switch (name) {
+    case 'line':
+      for (let i = 1; i < arguments.length; ++i) {
+        if (!((arguments[i] instanceof Array) && (arguments[i].length === 4))) {
+          throw ".has('line', [x1, y1, x2, y2]) 使用出错，例子参照 https://github.com/centixkadon/Schematic/blob/master/js/README.md";
+        }
+        this.push({
+          mark: name,
+          attr: { x1: arguments[i][0], y1: arguments[i][1], x2: arguments[i][2], y2: arguments[i][3], },
+        });
+      }
+      break;
     /*
     case "line":
       for (i = 0; i < count; i++) {
@@ -28,16 +38,7 @@ Array.prototype.has = function (name) {
         this.push(temp);
       }
       break;
-    希望修改成以下示例： */
-    case 'line':
-      for (let i = 1; i < arguments.length; ++i){
-        if (!((arguments[i] instanceof Array) && (arguments[i].length === 4))) throw 'error';
-        this.push({
-          mark: name,
-          attr: { x1: arguments[i][0], y1: arguments[i][1], x2: arguments[i][2], y2: arguments[i][3], },
-        });
-      }
-      break;  
+    */
     case "polyline":
       var temp = new Object();
       temp.mark = name;

@@ -7,7 +7,12 @@ let windowResize = function () {
   $('#svg').attr('width', w);
   $('#svg').attr('height', w * 400 / 1000);
 }
-$(window).resize(ev => windowResize());
-windowResize();
 
-setComponentsScale(1);
+$(window).resize(ev => windowResize());
+
+$(document).ready(ev => {
+  windowResize();
+
+  setComponentsScale(1);
+
+});

@@ -1,4 +1,5 @@
 
+/* schComponents 结构体示例如下，完善该结构体的各元器件定义已迁移到 js/main.js
 let schComponents = {
   'vcc': [
     { mark: 'line', attr: { x1: -10, y1: -10, x2: 10, y2: -10, }, },
@@ -11,3 +12,6 @@ let schComponents = {
     { mark: 'line', attr: { x1: -5, y1: 20, x2: 5, y2: 20, }, },
   ],
 };
+*/
+
+let schComponents = {};

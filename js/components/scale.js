@@ -17,6 +17,7 @@ function setWindowScale(s) {
   $('#svgAll').attr('transform', 'scale(' + allScale + ')');
 }
 
-function getSvgPos(pos) {
-  return parseInt(pos / allScale);
+function getSvgPos(ev) {
+  let offset = $('#svg').offset();
+  return [parseInt((ev.pageX - offset.left) / allScale), parseInt((ev.pageY - offset.top) / allScale)];
 }

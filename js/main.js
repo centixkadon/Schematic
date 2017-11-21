@@ -14,7 +14,7 @@ $(document).ready(ev => {
   setComponentsScale(1);
 
   $('#svg').mousemove(function (ev) {
-    let x = getSvgPos(ev.offsetX), y = getSvgPos(ev.offsetY);
+    let [x, y] = getSvgPos(ev);
     if ((x < 100) || (y < 0)) return;
     $('#svgSch').children('text').html('#svgSch mousePos: (' + (x - 100) + ', ' + (y) + ')');
   });

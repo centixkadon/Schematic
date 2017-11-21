@@ -65,3 +65,42 @@ componentVcc.moveTo(50, 50);                           // 移动到 #svgSch 左�
 let componentVcc = drawComponent('vcc', 100, 100);     // 在 #svgSch 视野内画出一个电源，返回对应的jQuery对象
 componentVcc.moveBy(-50, -50);                         // 移动到 #svgSch 左上角（相对位置）
 ```
+```javascript
+// 将以下代码复制到 js/test/test.js 中，应在 #svgSch 左上角画出一个电源后删除。
+let componentVcc = drawComponent('vcc', 50, 50);
+componentVcc.removeIt();
+```
+
+### 预期目标3
+
+```javascript
+// 将以下代码复制到 js/test/test.js 中，应从 #svgButton 左上角开始，依次画出电源和地。
+drawButton('vcc');
+drawButton('gnd');
+```
+
+## 3. 事件
+
+### 主要任务及说明
+
+1. 实现vcc相关事件
+   1. 在#svgButton画出vcc（调用 drawButton）
+   1. 添加相关事件，实现以下功能
+      1. 在按钮处左键按下，在 #svgSch 某处画出vcc（调用 drawComponent）
+      1. 在#svgSch处鼠标移动，vcc移动到鼠标位置（调用 moveTo）
+      1. 在#svgSch处鼠标弹起，vcc固定到当前鼠标位置，即vcc不再跟随鼠标
+      1. 其它未提到的事件均忽略，如在按钮处左键弹起等
+   1. 添加相关事件，实现以下功能
+      1. 在#svgSch的vcc处按下，选择vcc
+      1. 在#svgSch处鼠标移动，选择的vcc移动到鼠标位置（调用 moveBy）
+      1. 在#svgSch处鼠标弹起，选择的vcc固定到当前鼠标位置
+      1. 按Esc键取消选择
+      1. 按Del键删除（调用 removeIt）
+1. 推广到元器件库中所有元器件
+1. 说明
+   1. 实现思路参考状态机
+   1. 事件添加方法参考main.js（添加了resize事件、ready事件、mousemove事件）和[jQuery API 文档](http://api.jquery.com/)
+
+### 预期目标
+
+无测试代码，网页行为与预期相符即可。

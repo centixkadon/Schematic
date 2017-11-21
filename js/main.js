@@ -3,7 +3,7 @@
 
 // 保持电路原理图大小合适
 let windowResize = function () {
-  setWindowScale($('h1').innerWidth() / 1100);
+  setWindowScale($('h1').innerWidth() / schConfig.svgInnerSize.width);
 }
 
 $(window).resize(ev => windowResize());
@@ -11,7 +11,7 @@ $(window).resize(ev => windowResize());
 $(document).ready(ev => {
   windowResize();
 
-  setComponentsScale(1);
+  setComponentsScale(schConfig.componentsScale);
 
   $('#svg').mousemove(function (ev) {
     let [x, y] = getSvgPos(ev);

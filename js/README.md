@@ -74,7 +74,7 @@ componentVcc.removeIt();
 ### 预期目标3
 
 ```javascript
-// 将以下代码复制到 js/test/test.js 中，应从 #svgButton 左上角开始，依次画出电源和地。
+// 将以下代码复制到 js/test/test.js 中，应从 #svgButton 左上角开始，依次画出电源和地，并返回对应的jQuery对象。
 drawButton('vcc');
 drawButton('gnd');
 ```

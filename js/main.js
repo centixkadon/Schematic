@@ -15,4 +15,10 @@ $(document).ready(ev => {
 
   setComponentsScale(1);
 
+  $('#svg').mousemove(function (ev) {
+    if (ev.offsetX < 100) return;
+
+    $('#svgSch').children('text').html('#svgSch mousePos: (' + (ev.offsetX - 100) + ', ' + (ev.offsetY) + ')');
+  });
+
 });

@@ -48,7 +48,7 @@ defineComponent('gnd').has('line', [0, 0, 0, 10], [-15, 10, 15, 10], [-10, 15, 1
 ### 预期目标1
 
 ```javascript
-// 将以下代码复制到 js/test/test.js 中，应在 #svgSch 左上角画出一个电源，电源下方画出一个地，并返回对应的jQuery对象。
+// 将以下代码复制到 js/test/test.js 中，应在 #svgSch 左上角画出一个电源，电源右边画出一个地，并返回对应的jQuery对象。
 drawComponent('vcc', 50, 0);
 drawComponent('gnd', 50, 200);
 ```

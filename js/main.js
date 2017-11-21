@@ -3,7 +3,7 @@
 
 // 保持电路原理图大小合适
 let windowResize = function () {
-  setWindowScale($('h1').innerWidth() / schConfig.svgInnerSize.width);
+  setWindowScale($('h1').innerWidth() / schConfig.svg.innerSize.width);
 }
 
 $(window).resize(ev => windowResize());
@@ -14,9 +14,9 @@ $(document).ready(ev => {
   setComponentsScale(schConfig.componentsScale);
 
   $('#svg').mousemove(function (ev) {
-    let [x, y] = getSvgPos(ev);
-    if ((x < 100) || (y < 0)) return;
-    $('#svgSch').children('text').html('#svgSch mousePos: (' + (x - 100) + ', ' + (y) + ')');
+    let [x, y] = getSchPos(ev);
+    if ((x < 0) || (y < 0)) return;
+    $('#svgSch').children('text').html('#svgSch mousePos: (' + x + ', ' + y + ')');
   });
 
 });

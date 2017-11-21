@@ -29,14 +29,30 @@ jQuery.prototype.removeIt = function () {
   return this;
 }
 
-//输入obj为schSchematic数组元素,画出对应的元器件并返回创建的<g>对象
-function drawComponent(componentName, offsetX, offsetY) {
-  let group = $s('g').appendComponent(componentName).attr('transform', 'translate(' + offsetX + ' ' + offsetY + ')');
-  group.schName = componentName;
-  group.schIdx = schSchematic.length;
-  group.schX = offsetX;
-  group.schY = offsetY;
-  $('#svgSch').append(group);
-  schSchematic.push(group);
-  return group;
+function createComponent(componentName, componentX, componentY) {
+  return $s('g').appendComponent(componentName).attr('transform', 'translate(' + componentX + ' ' + componentY + ')');
+}
+
+//在 #svgSch 画出对应的元器件并返回创建的jQuery对象
+function drawComponent(componentName, componentX, componentY) {
+  let component = createComponent(componentName, componentX, componentY);
+  component.schIdx = schSchematic.length;
+  component.schName = componentName;
+  component.schX = componentX;
+  component.schY = componentY;
+
+  $('#svgSch').append(component);
+  schSchematic.push(component);
+  return component;
+}
+
+let schButtonIndex = 0;
+
+//在 #svgButton 画出对应的元器件并返回创建的jQuery对象
+function drawButton(componentName) {
+  let component = createComponent(componentName, (schButtonIndex % 2) * 50 + 25, parseInt(schButtonIndex / 2) * 50 + 25);
+  ++schButtonIndex;
+
+  $('#svgButton').append(component);
+  return component;
 }

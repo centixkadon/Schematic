@@ -90,13 +90,13 @@ drawButton('gnd');
       1. 在#svgSch处鼠标移动，vcc移动到鼠标位置（调用 moveTo）
       1. 在#svgSch处鼠标弹起，vcc固定到当前鼠标位置，即vcc不再跟随鼠标
       1. 其它未提到的事件均忽略，如在按钮处左键弹起等
-   1. 添加相关事件，实现以下功能
-      1. 在#svgSch的vcc处按下，选择vcc
-      1. 在#svgSch处鼠标移动，选择的vcc移动到鼠标位置（调用 moveBy）
-      1. 在#svgSch处鼠标弹起，选择的vcc固定到当前鼠标位置
-      1. 按Esc键取消选择
-      1. 按Del键删除（调用 removeIt）
 1. 推广到元器件库中所有元器件
+1. 继续添加相关事件，实现以下功能
+   1. 在#svgSch的vcc处按下，选择vcc
+   1. 在#svgSch处鼠标移动，选择的vcc移动到鼠标位置（调用 moveBy）
+   1. 在#svgSch处鼠标弹起，选择的vcc固定到当前鼠标位置
+   1. 按Esc键取消选择
+   1. 按Del键删除（调用 removeIt）
 1. 说明
    1. 实现思路参考状态机
    1. 事件添加方法参考main.js（添加了resize事件、ready事件、mousemove事件）和[jQuery API 文档](http://api.jquery.com/)

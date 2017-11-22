@@ -50,7 +50,11 @@ let schButtonIndex = 0;
 
 //在 #svgButton 画出对应的元器件并返回创建的jQuery对象
 function drawButton(componentName) {
-  let component = createComponent(componentName, (schButtonIndex % 2) * 50 + 25, parseInt(schButtonIndex / 2) * 50 + 25);
+  let component = createComponent(
+    componentName,
+    ((schButtonIndex % schConfig.svg.button.col) + 0.5) * schConfig.svg.button.size,
+    (parseInt(schButtonIndex / schConfig.svg.button.col) + 0.5) * schConfig.svg.button.size
+  );
   ++schButtonIndex;
 
   $('#svgButton').append(component);

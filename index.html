@@ -23,14 +23,14 @@
     <div id="test" style="height:100px"></div>
 
     <svg id="svg" style="border:1pt solid black">
-      <g id="svgAll" style="pointer-events:1000">
-        <line x1="100" y1="0" x2="100" y2="10000" stroke="black" />
-        <g style="cursor:pointer">
+      <g id="svgAll">
+        <line stroke="black"></line>
+        <g cursor="pointer">
           <g id="svgButton">
-            <text x="10" y="390" font-size="12">#svgButton</text>
+            <text x="10" font-size="12">#svgButton</text>
           </g>
-          <g id="svgSch" transform="translate(100 0)">
-            <text x="10" y="390" font-size="12">#svgSch mousePos: (0, 0)</text>
+          <g id="svgSch">
+            <text x="10" font-size="12">#svgSch mousePos: (0, 0)</text>
             <g id="svgTestAppendComponent1" transform="translate(50 50)"></g>
             <g id="svgTestAppendComponent2" transform="translate(100 50)"></g>
           </g>
@@ -40,6 +40,8 @@
 
   </div>
   
+  <script src="js/config/config.js"></script>
+
   <script src="js/components/components.js"></script>
   <script src="js/components/scale.js"></script>
   <script src="js/components/append.js"></script>

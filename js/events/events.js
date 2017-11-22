@@ -1,5 +1,5 @@
-comp = '';
-compModel;
+//comp = '';
+//compModel;
 function initEvents() {
   //init button for vcc
   let vccButton = drawButton('vcc');

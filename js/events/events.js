@@ -16,8 +16,9 @@ function initEvents() {
   gndButton.mousedown(function (ev) {
     comp = 'gnd';
     state = 1;
+    x1 = 10, y1 = 10;
     compModel = drawComponent(comp, 10, 10);
-    addEvents(compModel, ev, state);
+    addEvents(compModel, ev, state,x1,y1);
   });
 
 }
@@ -25,7 +26,7 @@ function initEvents() {
 
 /*private functions for this modulw*/
 //events for compModel
-function addEvents(compModel, ev, state,x1,y1) {
+function addEvents(compModel, ev, state, x1, y1) {
   compModel.mousedown(function () {
     if (state == 0) {
       state = 2;

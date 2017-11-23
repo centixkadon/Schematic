@@ -1,28 +1,35 @@
 let schCompModel = undefined;//storage selected components
-let schCurrent = 0;//current state of sch
 let schState = {
   none: 0,
   placing: 1,
   moving: 2,
 };//statement structure
-let schPrevX, schPrevY;
+let schCurrent = schState.none;//current state of sch
+let schPrevX = 0;
+let schPrevY = 0;
 /* function initEvents: bind events with buttons and components*/
 function initEvents() {
   //init button for vcc
   let vccButton = drawButton('vcc');
   vccButton.mousedown(function (ev) {
-    comp = 'vcc';
-    schCurrent = schState.placing;
-    [x, y] = getSchPos(ev);
-    schCompModel = [
-      drawComponent(comp, x, y)
-        .mousedown(function () {
-          if (schCurrent == schState.none) {
-            schCurrent = schState.moving;
-            schCompModel = [$(this)];
-          }
-        })
-    ];
+    switch (schCurrent) {
+      case schState.none:
+        comp = 'vcc';
+        schCurrent = schState.placing;
+        [x, y] = getSchPos(ev);
+        schCompModel = [
+          drawComponent(comp, x, y)
+            .mousedown(function () {
+              switch (schCurrent) {
+                case schState.none:
+                  schCurrent = schState.moving;
+                  schCompModel = [$(this)];
+                  break;
+              }
+            })
+        ];
+        break;
+  }
   });
 
   //keydown events of body
@@ -64,12 +71,14 @@ function initEvents() {
       case schState.moving:
         //[x, y] = getSchPos(ev);
         for (var i = 0; i < schCompModel.length; i++) {
-          schCompModel[i].moveBy(x - schPrevX, y - schPrevY);
+          //schCompModel[0].moveBy(x - schPrevX, y - schPrevY);
+          schCompModel[0].moveTo(x, y);
         }
-        break;  
+        break;
     }
     schPrevX = x;
     schPrevY = y;
+    console.log(typeof (x - schPrevX), typeof (y - schPrevY));
   });
   //components embedded
   $('#svg').mouseup(function (ev) {

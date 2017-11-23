@@ -11,6 +11,10 @@ $(window).resize(ev => windowResize());
 $(document).ready(ev => {
   windowResize();
 
+  $('body')
+    .bind('contextmenu selectstart dragstart beforecopy', false)
+    .bind('copy select', ev => document.selection.empty());
+
   setComponentsScale(schConfig.componentsScale);
 
   $('#svg').mousemove(function (ev) {

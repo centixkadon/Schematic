@@ -7,39 +7,43 @@
 //用来存放电路图中所有元器件的数组
 let schSchematic = [];
 
-jQuery.prototype.moveTo = function (X, Y) {
-  this.attr('transform', 'translate(' + X + ' ' + Y + ')');
-  this.schX = X;
-  this.schY = Y;
-  return this;
-}
-
-jQuery.prototype.moveBy = function (X, Y) {
-  X = X + this.schX;
-  Y = Y + this.schY;
-  this.attr('transform', 'translate(' + X + ' ' + Y + ')');
-  this.schX = X;
-  this.schY = Y;
-  return this;
-}
-
-jQuery.prototype.removeIt = function () {
-  schSchematic[this.schIdx] = undefined;
-  this.remove();
-  return this;
-}
+$.fn.extend({
+  initPoseProps: function () {
+    return this.data('poseProperties', {});
+  },
+  getPoseProps: function () {
+    return this.data('poseProperties');
+  },
+  updateTransform: function () {
+    let props = this.getPoseProps();
+    return this.attr('transform', 'translate(' + props.x + ' ' + props.y + ')');
+  },
+  moveTo: function (toX, toY) {
+    let props = this.getPoseProps();
+    [props.x, props.y] = [toX, toY];
+    return this.updateTransform();
+  },
+  moveBy: function (byX, byY) {
+    let props = this.getPoseProps();
+    props.x += byX; props.y += byY;
+    return this.updateTransform();
+  },
+  removeIt: function () {
+    schSchematic[this.getPoseProps().index] = undefined;
+    return this.remove();
+  },
+});
 
 function createComponent(componentName, componentX, componentY) {
-  return $s('g').appendComponent(componentName).attr('transform', 'translate(' + componentX + ' ' + componentY + ')');
+  let component = $s('g').appendComponent(componentName).initPoseProps();
+  let props = component.getPoseProps();
+  [props.index, props.name] = [schSchematic.length, componentName];
+  return component.moveTo(componentX, componentY);
 }
 
 //在 #svgSch 画出对应的元器件并返回创建的jQuery对象
 function drawComponent(componentName, componentX, componentY) {
   let component = createComponent(componentName, componentX, componentY);
-  component.schIdx = schSchematic.length;
-  component.schName = componentName;
-  component.schX = componentX;
-  component.schY = componentY;
 
   $('#svgSch').append(component);
   schSchematic.push(component);

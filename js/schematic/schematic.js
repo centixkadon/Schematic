@@ -8,35 +8,29 @@
 let schSchematic = [];
 
 $.fn.extend({
-  initPoseProps: function () {
-    return this.data('poseProperties', {});
-  },
-  getPoseProps: function () {
-    return this.data('poseProperties');
-  },
   updateTransform: function () {
-    let props = this.getPoseProps();
+    let props = this.getProps('pose');
     return this.attr('transform', 'translate(' + props.x + ' ' + props.y + ')');
   },
   moveTo: function (toX, toY) {
-    let props = this.getPoseProps();
+    let props = this.getProps('pose');
     [props.x, props.y] = [toX, toY];
     return this.updateTransform();
   },
   moveBy: function (byX, byY) {
-    let props = this.getPoseProps();
+    let props = this.getProps('pose');
     props.x += byX; props.y += byY;
     return this.updateTransform();
   },
   removeIt: function () {
-    schSchematic[this.getPoseProps().index] = undefined;
+    schSchematic[this.getProps('pose').index] = undefined;
     return this.remove();
   },
 });
 
 function createComponent(componentName, componentX, componentY) {
-  let component = $s('g').appendComponent(componentName).initPoseProps();
-  let props = component.getPoseProps();
+  let component = $s('g').appendComponent(componentName);
+  let props = component.getProps('pose');
   [props.index, props.name] = [schSchematic.length, componentName];
   return component.moveTo(componentX, componentY);
 }

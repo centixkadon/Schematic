@@ -32,7 +32,7 @@ function setWindowScale(s) {
 function getSchPos(ev) {
   let offset = $('#svg').offset();
   return [
-    parseInt((ev.pageX - offset.left - schConfig.svg.button.width * windowScale) / allScale),
+    parseInt((ev.pageX - offset.left) / allScale - schConfig.svg.button.width),
     parseInt((ev.pageY - offset.top) / allScale)
   ];
 }

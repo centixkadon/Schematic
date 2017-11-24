@@ -59,7 +59,7 @@ function initEvents() {
                   }
                   break;
               }
-              console.log($(this).getProps('events').selected);
+              //console.log($(this).getProps('events').selected);
               return false;
             })
             .setProps('events', {selected: true})
@@ -119,70 +119,74 @@ function initEvents() {
             break;
           case 86://V
             if (ev.ctrlKey) {//ctrl+v
-              if (schCompModelCopy != undefined) {
-                if (schCompModel != undefined) {
-                  for (var i = 0; i < schCompModel.length; i++) {
-                    schCompModel[i].setProps('events', { selected: false });//cancel all selected
-                  }
-                  schCompModel = undefined;
-                }//clear schModelComp, cancel all selected
-                for (var i = 0; i < schCompModelCopy.length; i++) {
-                  tempComp = drawComponent(schCompModelCopy[i].getProps('pose').name, schCompModelCopy[i].getProps('pose').x, schCompModelCopy[i].getProps('pose').y)
-                  tempComp.mousedown(function (ev) {
-                    switch (schCurrent) {
-                      case schState.none://in theory, only in state none allow to select comp
-                        schCurrent = schState.moving;
-                        if ($(this).getProps('events').selected == false) {//unselected, using ctrl to select multi-comp
-                          if (schCompModel != undefined) {//list exist
-                            if (ev.ctrlKey) {
-                              $(this).setProps('events', { selected: true });
-                              schCompModel.push($(this));//multi select
-                            }
-                            else {
-                              $(this).setProps('events', { selected: true });
-                              schCompModel = [$(this)];//single select
-                            }
-                          }
-                          else {//list does not exist
-                            $(this).setProps('events', { selected: true });
-                            schCompModel = [$(this)];//single select
-                          }
-                        }
-                        else {//selected, using strl to cancel
-                          if (ev.ctrlKey) {
-                            $(this).setProps('events', { selected: false });
-                            if (schCompModel != undefined) {
-                              for (var i = 0; i < schCompModel.length; i++) {
-                                if (schCompModel[i].getProps('events').selected === false)//cancel select
-                                  schCompModel.splice(i, 1);
+              switch (schCurrent) {
+                case schState.none:
+                  if (schCompModelCopy != undefined) {
+                    if (schCompModel != undefined) {
+                      for (var i = 0; i < schCompModel.length; i++) {
+                        schCompModel[i].setProps('events', { selected: false });//cancel all selected
+                      }
+                      schCompModel = undefined;
+                    }//clear schModelComp, cancel all selected
+                    for (var i = 0; i < schCompModelCopy.length; i++) {
+                      tempComp = drawComponent(schCompModelCopy[i].getProps('pose').name, schCompModelCopy[i].getProps('pose').x, schCompModelCopy[i].getProps('pose').y)
+                      tempComp.mousedown(function (ev) {
+                        switch (schCurrent) {
+                          case schState.none://in theory, only in state none allow to select comp
+                            schCurrent = schState.moving;
+                            if ($(this).getProps('events').selected == false) {//unselected, using ctrl to select multi-comp
+                              if (schCompModel != undefined) {//list exist
+                                if (ev.ctrlKey) {
+                                  $(this).setProps('events', { selected: true });
+                                  schCompModel.push($(this));//multi select
+                                }
+                                else {
+                                  $(this).setProps('events', { selected: true });
+                                  schCompModel = [$(this)];//single select
+                                }
+                              }
+                              else {//list does not exist
+                                $(this).setProps('events', { selected: true });
+                                schCompModel = [$(this)];//single select
                               }
                             }
-                          }
+                            else {//selected, using strl to cancel
+                              if (ev.ctrlKey) {
+                                $(this).setProps('events', { selected: false });
+                                if (schCompModel != undefined) {
+                                  for (var i = 0; i < schCompModel.length; i++) {
+                                    if (schCompModel[i].getProps('events').selected === false)//cancel select
+                                      schCompModel.splice(i, 1);
+                                  }
+                                }
+                              }
+                            }
+                            break;
                         }
-                        break;
+                        //console.log($(this).getProps('events').selected);
+                        return false;
+                      });
+                      tempComp.setProps('events', { selected: true });
+                      if (schCompModel != undefined) {
+                        schCompModel.push($(tempComp));
+                      }
+                      else { schCompModel = [$(tempComp)]; }
                     }
-                    console.log($(this).getProps('events').selected);
-                    return false;
-                  });
-                  tempComp.setProps('events', { selected: true });
-                  if (schCompModel != undefined) {
-                    schCompModel.push($(tempComp));
+                    centerX = 0, centerY = 0;
+                    for (var i = 0; i < schCompModel.length; i++) {
+                      centerX = centerX + schCompModel[i].getProps('pose').x;
+                      centerY = centerY + schCompModel[i].getProps('pose').y;
+                    }
+                    centerX = centerX / schCompModel.length;
+                    centerY = centerY / schCompModel.length;
+                    for (var i = 0; i < schCompModel.length; i++) {
+                      schCompModel[i].moveBy(x - centerX, y - centerY);
+                    }
+                    schCurrent = schState.moving;
                   }
-                  else { schCompModel = [$(tempComp)];}
-                }
-                centerX = 0, centerY = 0;
-                for (var i = 0; i < schCompModel.length; i++) {
-                  centerX = centerX + schCompModel[i].getProps('pose').x;
-                  centerY = centerY + schCompModel[i].getProps('pose').y;
-                }
-                centerX = centerX / schCompModel.length;
-                centerY = centerY / schCompModel.length;
-                for (var i = 0; i < schCompModel.length; i++) {
-                  schCompModel[i].moveBy(x-centerX, y-centerY);
-                } 
-                schCurrent = schState.moving;
-              }
+                  break;
             }
+        }
             break;
         }
   });

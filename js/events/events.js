@@ -6,99 +6,151 @@ let schState = {
 };//statement structure
 let schCurrent = schState.none;//current state of sch
 let schPrevX = 0;
-let schPrevY = 0;
+let schPrevY = 0;//storage mouse coordinates of last position
+
 /* function initEvents: bind events with buttons and components*/
 function initEvents() {
   //init button for vcc
   let vccButton = drawButton('vcc');
   vccButton.mousedown(function (ev) {
     switch (schCurrent) {
-      case schState.none:
-        comp = 'vcc';
+      case schState.none://in theory, only in state none allow to draw components
+        if (schCompModel != undefined){
+          for (var i = 0; i < schCompModel.length; i++) {
+            schCompModel[i].setProps('events', { selected: false });
+          }
+            schCompModel = undefined;
+        }//cancel all seleted when try to draw a new one
+        comp = 'vcc';//name
         schCurrent = schState.placing;
-        // [x, y] = getSchPos(ev);
         schCompModel = [
-          drawComponent(comp, schPrevX, schPrevY)
+          drawComponent(comp, schPrevX, schPrevY)//draw a component and select into schCompModel
             .mousedown(function (ev) {
               switch (schCurrent) {
-                case schState.none:
+                case schState.none://in theory, only in state none allow to select comp
                   schCurrent = schState.moving;
-                  if (ev.ctrlKey) {
-                    schCompModel.push($(this));
+                  if ($(this).getProps('events').selected == false) {//unselected, using ctrl to select multi-comp
+                    if (schCompModel != undefined) {//list exist
+                        if (ev.ctrlKey) {
+                          $(this).setProps('events', { selected: true });
+                          schCompModel.push($(this));//multi select
+                        }
+                        else {
+                          $(this).setProps('events', { selected: true });
+                          schCompModel = [$(this)];//single select
+                        }
+                      }
+                      else {//list does not exist
+                        $(this).setProps('events', { selected: true });
+                        schCompModel = [$(this)];//single select
+                      }
                   }
-                  else{
-                    schCompModel = [$(this)];
+                  else {//selected, using strl to cancel
+                    if (ev.ctrlKey) {
+                      $(this).setProps('events', { selected: false });
+                      if(schCompModel != undefined){
+                        for (var i = 0; i < schCompModel.length; i++) {
+                          if (schCompModel[i].getProps('events').selected === false)//cancel select
+                            schCompModel.splice(i, 1);
+                        }
+                      }
+                    }
                   }
                   break;
               }
-              console.log(schCompModel.length);
+              console.log($(this).getProps('events').selected);
               return false;
             })
+            .setProps('events', {selected: true})
         ];
         break;
     }
-    return false;  
+    return false;
   });
 
   //keydown events of body
   $('body').keydown(function (ev) {
-    //switch (schCurrent){
-      //case schState.moving:
         switch (ev.which) {
           case 27://esc
             switch(schCurrent){
-              case schState.placing:
-                schCurrent = schState.none;
-                for (var i = 0; i < schCompModel.length; i++) {
-                  schCompModel[i].removeIt();
+              case schState.placing://esc in placing state
+                schCurrent = schState.none;//cancel placing
+                if(schCompModel != undefined){
+                  for (var i = 0; i < schCompModel.length; i++) {
+                    schCompModel[i].setProps('events', { selected: false });
+                    schCompModel[i].removeIt();//remove models
+                  }
+                    schCompModel = undefined;
                 }
-                schCompModel = undefined;
                 break;
-              case schState.moving:
-                schCurrent = schState.none;
-                schCompModel = undefined;
+              case schState.moving://esc in moving state
+                schCurrent = schState.none;//cancle moving
+                if(schCompModel != undefined){
+                  for (var i = 0; i < schCompModel.length; i++) {
+                    schCompModel[i].setProps('events', {selected:false});//cancel all selected
+                  }
+                    schCompModel = undefined;
+                }
                 break;
             }
             break;
           case 46://delete
-            schCurrent = schState.none;
-            for (var i = 0; i < schCompModel.length; i++) {
-              schCompModel[i].removeIt();
+            schCurrent = schState.none;//return to state none
+            if (schCompModel != undefined){
+              for (var i = 0; i < schCompModel.length; i++) {
+                schCompModel[i].setProps('events', { selected: false });
+                schCompModel[i].removeIt();//remove all selected models
+              }
             }
             break;
+          case 81://Q
+            //turn 90 deg clockwise
+            break;
+          case 69://E
+            //turn 90 deg counter clockwise
+            break;
         }
-
   });
   //keyup events of body
-  //$('body').key
+  //$('body').keyup(function(ev){})
+
   //mousemove events
   $('#svg').mousemove(function (ev) {
-    [x, y] = getSchPos(ev);
+    [x, y] = getSchPos(ev);//get coordinates
     if (x < 0) return;
     switch(schCurrent){
-      case schState.placing:
-        //[x, y] = getSchPos(ev);
-        schCompModel[0].moveTo(schPrevX, schPrevY);
+      case schState.placing://state placing
+        if (schCompModel != undefined) {
+          for (var i = 0; i < schCompModel.length; i++) {
+            schCompModel[i].moveTo(schPrevX, schPrevY);
+          }  
+        }
         break;
-      case schState.moving:
-        //[x, y] = getSchPos(ev);
-        for (var i = 0; i < schCompModel.length; i++) {
-          schCompModel[i].moveBy(x - schPrevX, y - schPrevY);
-          //schCompModel[0].moveTo(x, y);
+      case schState.moving://state moving
+        if(schCompModel != undefined){
+          for (var i = 0; i < schCompModel.length; i++) {
+            schCompModel[i].moveBy(x - schPrevX, y - schPrevY);
+          }
         }
         break;
     }
     schPrevX = x;
     schPrevY = y;
   });
-  //
+  //mousedown events for svg (click in the blank)
   $('#svg').mousedown(function (ev) {
-    schCompModel = undefined;
+    if(schCompModel != undefined){
+      for (var i = 0; i < schCompModel.length; i++) {
+        schCompModel[i].setProps('events', { selected: false });
+      }
+        schCompModel = undefined;
+    }
+    schCurrent = schState.none;//cancel all selected and change state to none
   });
   //components embedded
-  $('#svg').mouseup(function (ev) {
+  $('#svg').mouseup(function (ev) {//mouse up means not moving comp
     [x, y] = getSchPos(ev);
-    if (x > 0) {
+    if (x > 0) {//can only embed in the area where x > 0
       switch (schCurrent) {
         case schState.placing:
           schCurrent = schState.none;
@@ -110,5 +162,5 @@ function initEvents() {
     }
   });
 }
-
+/***********************************************************************************/
 

@@ -16,29 +16,49 @@ function initEvents() {
       case schState.none:
         comp = 'vcc';
         schCurrent = schState.placing;
-        [x, y] = getSchPos(ev);
+        // [x, y] = getSchPos(ev);
         schCompModel = [
-          drawComponent(comp, x, y)
-            .mousedown(function () {
+          drawComponent(comp, schPrevX, schPrevY)
+            .mousedown(function (ev) {
               switch (schCurrent) {
                 case schState.none:
                   schCurrent = schState.moving;
-                  schCompModel = [$(this)];
+                  if (ev.ctrlKey) {
+                    schCompModel.push($(this));
+                  }
+                  else{
+                    schCompModel = [$(this)];
+                  }
                   break;
               }
+              console.log(schCompModel.length);
+              return false;
             })
         ];
         break;
-  }
+    }
+    return false;  
   });
 
   //keydown events of body
   $('body').keydown(function (ev) {
-    switch (schCurrent){
-      case schState.moving:
+    //switch (schCurrent){
+      //case schState.moving:
         switch (ev.which) {
           case 27://esc
-            schCurrent = schState.none;
+            switch(schCurrent){
+              case schState.placing:
+                schCurrent = schState.none;
+                for (var i = 0; i < schCompModel.length; i++) {
+                  schCompModel[i].removeIt();
+                }
+                schCompModel = undefined;
+                break;
+              case schState.moving:
+                schCurrent = schState.none;
+                schCompModel = undefined;
+                break;
+            }
             break;
           case 46://delete
             schCurrent = schState.none;
@@ -47,38 +67,33 @@ function initEvents() {
             }
             break;
         }
-        break;
-      case schState.placing:
-        switch (ev.which) {
-          case 27://esc
-            schCurrent = schState.none;
-            for (var i = 0; i < schCompModel.length; i++) {
-              schCompModel[i].removeIt();
-            }
-            break;
-        }
-        break;
-    }
+
   });
+  //keyup events of body
+  //$('body').key
   //mousemove events
   $('#svg').mousemove(function (ev) {
     [x, y] = getSchPos(ev);
+    if (x < 0) return;
     switch(schCurrent){
       case schState.placing:
         //[x, y] = getSchPos(ev);
-        schCompModel[0].moveTo(x, y);
+        schCompModel[0].moveTo(schPrevX, schPrevY);
         break;
       case schState.moving:
         //[x, y] = getSchPos(ev);
         for (var i = 0; i < schCompModel.length; i++) {
-          //schCompModel[0].moveBy(x - schPrevX, y - schPrevY);
-          schCompModel[0].moveTo(x, y);
+          schCompModel[i].moveBy(x - schPrevX, y - schPrevY);
+          //schCompModel[0].moveTo(x, y);
         }
         break;
     }
     schPrevX = x;
     schPrevY = y;
-    console.log(typeof (x - schPrevX), typeof (y - schPrevY));
+  });
+  //
+  $('#svg').mousedown(function (ev) {
+    schCompModel = undefined;
   });
   //components embedded
   $('#svg').mouseup(function (ev) {
@@ -97,57 +112,3 @@ function initEvents() {
 }
 
 
-// /*private functions for this modulw*/
-// //events for compModel
-// function addEvents(compModel, ev, state, x1, y1) {
-//   compModel.mousedown(function () {
-//     if (state == 0) {
-//       state = 2;
-//     }
-//   });
-//   $('body').keydown(function (ev) {
-//     if (state == 2) {
-//       switch (ev.which){
-//         case 27:
-//           state = 0;
-//           break;
-//         case 46:
-//           state = 0;
-//           compModel.removeIt();
-//           break;
-
-//       }
-//     }
-//     else if (state == 1) {
-//       switch (ev.which) {
-//         case 27:
-//           state = 0;
-//           compModel.removeIt();
-//           break;
-//       }
-//     }
-//   });
-//   //components move with mouse
-//   $('#svg').mousemove(function (ev) {
-//     if (state == 1) {
-//       [x, y] = getSchPos(ev);
-//       compModel.moveTo(x, y);
-//     }
-//     else if (state == 2) {
-//       [x, y] = getSchPos(ev);
-//       //compModel.moveBy(x, y);
-//       compModel.moveBy(x - x1, y - y1);
-//     }
-//     [x1, y1] = getSchPos(ev);
-//   });
-//   //components embedded
-//   $('#svg').mouseup(function (ev) {
-//     [x, y] = getSchPos(ev);
-//     if ((state == 1 || state == 2) && x > 0) {
-//       state = 0;
-//       x1 = x;
-//       y1 = y;
-//       comp = '';
-//     }
-//   });
-// }

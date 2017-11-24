@@ -105,10 +105,10 @@ function initEvents() {
             }
             break;
           case 81://Q
-            //turn 90 deg clockwise
+            //turn 90 deg counter clockwise
             break;
           case 69://E
-            //turn 90 deg counter clockwise
+            //turn 90 deg clockwise
             break;
           case 67://C
             if (ev.ctrlKey) {//ctrl+c

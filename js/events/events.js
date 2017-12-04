@@ -38,6 +38,9 @@ function initEvents() {
                           schCompModel.push($(this));//multi select
                         }
                         else {
+                          for (let i = 0; i < schCompModel.length; i++) {
+                            schCompModel[i].setProps('events', { selected: false });
+                          }
                           $(this).setProps('events', { selected: true });
                           schCompModel = [$(this)];//single select
                         }
@@ -47,7 +50,7 @@ function initEvents() {
                         schCompModel = [$(this)];//single select
                       }
                   }
-                  else {//selected, using strl to cancel
+                  else {//selected, using ctrl to cancel
                     if (ev.ctrlKey) {
                       $(this).setProps('events', { selected: false });
                       if(schCompModel != undefined){

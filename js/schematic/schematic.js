@@ -2,7 +2,9 @@
 //1.drawSchComponent()函数画出一个元器件、drawSchematic()画出所有已保存在schSchematic中的元器件。
 //2.因为涉及到成员函数，在这里用函数的方法定义元器件结构体。
 //3.drawComponent的返回值不是<g>对象，而是对应的元器件结构体。
+//4.this.rotateIt(deg)为旋转器件函数。
 /////////////////////////////////////////////////////////////////////////////////////////////////
+
 
 //用来存放电路图中所有元器件的数组
 let schSchematic = [];
@@ -26,6 +28,11 @@ $.fn.extend({
     schSchematic[this.getProps('pose').index] = undefined;
     return this.remove();
   },
+  /////旋转器件，deg为旋转角度
+  rotateIt: function (deg) {
+    let props = this.getProps('pose');
+    return this.css('transform','translate(' + props.x + 'px,' + props.y + 'px) rotate(' + deg%360 + 'deg)');
+  }
 });
 
 function createComponent(componentName, componentX, componentY) {
@@ -58,3 +65,4 @@ function drawButton(componentName) {
   $('#svgButton').append(component);
   return component;
 }
+

@@ -8,24 +8,25 @@ let schState = {
 let schCurrent = schState.none;//current state of sch
 let schPrevX = 0;
 let schPrevY = 0;//storage mouse coordinates of last position
+let keyList = undefined;
+//let comp = undefined;
 
 /* function initEvents: bind events with buttons and components*/
 function initEvents() {
-  //init button for vcc
-  let vccButton = drawButton('vcc');
-  vccButton.mousedown(function (ev) {
+  for (let key in schComponents){
+    drawButton(key).mousedown(function (ev) {
     switch (schCurrent) {
       case schState.none://in theory, only in state none allow to draw components
         if (schCompModel != undefined){
-          for (var i = 0; i < schCompModel.length; i++) {
+          for (let i = 0; i < schCompModel.length; i++) {
             schCompModel[i].setProps('events', { selected: false });
           }
             schCompModel = undefined;
         }//cancel all seleted when try to draw a new one
-        comp = 'vcc';//name
+        
         schCurrent = schState.placing;
         schCompModel = [
-          drawComponent(comp, schPrevX, schPrevY)//draw a component and select into schCompModel
+          drawComponent(key, schPrevX, schPrevY)//draw a component and select into schCompModel
             .mousedown(function (ev) {
               switch (schCurrent) {
                 case schState.none://in theory, only in state none allow to select comp
@@ -50,7 +51,7 @@ function initEvents() {
                     if (ev.ctrlKey) {
                       $(this).setProps('events', { selected: false });
                       if(schCompModel != undefined){
-                        for (var i = 0; i < schCompModel.length; i++) {
+                        for (let i = 0; i < schCompModel.length; i++) {
                           if (schCompModel[i].getProps('events').selected === false)//cancel select
                             schCompModel.splice(i, 1);
                         }
@@ -67,7 +68,8 @@ function initEvents() {
         break;
     }
     return false;
-  });
+    });
+  }
 
   //keydown events of body
   $('body').keydown(function (ev) {
@@ -77,7 +79,7 @@ function initEvents() {
               case schState.placing://esc in placing state
                 schCurrent = schState.none;//cancel placing
                 if(schCompModel != undefined){
-                  for (var i = 0; i < schCompModel.length; i++) {
+                  for (let i = 0; i < schCompModel.length; i++) {
                     schCompModel[i].setProps('events', { selected: false });
                     schCompModel[i].removeIt();//remove models
                   }
@@ -87,7 +89,7 @@ function initEvents() {
               case schState.moving://esc in moving state
                 schCurrent = schState.none;//cancle moving
                 if(schCompModel != undefined){
-                  for (var i = 0; i < schCompModel.length; i++) {
+                  for (let i = 0; i < schCompModel.length; i++) {
                     schCompModel[i].setProps('events', {selected:false});//cancel all selected
                   }
                     schCompModel = undefined;
@@ -98,7 +100,7 @@ function initEvents() {
           case 46://delete
             schCurrent = schState.none;//return to state none
             if (schCompModel != undefined){
-              for (var i = 0; i < schCompModel.length; i++) {
+              for (let i = 0; i < schCompModel.length; i++) {
                 schCompModel[i].setProps('events', { selected: false });
                 schCompModel[i].removeIt();//remove all selected models
               }
@@ -123,12 +125,12 @@ function initEvents() {
                 case schState.none:
                   if (schCompModelCopy != undefined) {
                     if (schCompModel != undefined) {
-                      for (var i = 0; i < schCompModel.length; i++) {
+                      for (let i = 0; i < schCompModel.length; i++) {
                         schCompModel[i].setProps('events', { selected: false });//cancel all selected
                       }
                       schCompModel = undefined;
                     }//clear schModelComp, cancel all selected
-                    for (var i = 0; i < schCompModelCopy.length; i++) {
+                    for (let i = 0; i < schCompModelCopy.length; i++) {
                       tempComp = drawComponent(schCompModelCopy[i].getProps('pose').name, schCompModelCopy[i].getProps('pose').x, schCompModelCopy[i].getProps('pose').y)
                       tempComp.mousedown(function (ev) {
                         switch (schCurrent) {
@@ -154,7 +156,7 @@ function initEvents() {
                               if (ev.ctrlKey) {
                                 $(this).setProps('events', { selected: false });
                                 if (schCompModel != undefined) {
-                                  for (var i = 0; i < schCompModel.length; i++) {
+                                  for (let i = 0; i < schCompModel.length; i++) {
                                     if (schCompModel[i].getProps('events').selected === false)//cancel select
                                       schCompModel.splice(i, 1);
                                   }
@@ -173,13 +175,13 @@ function initEvents() {
                       else { schCompModel = [$(tempComp)]; }
                     }
                     centerX = 0, centerY = 0;
-                    for (var i = 0; i < schCompModel.length; i++) {
+                    for (let i = 0; i < schCompModel.length; i++) {
                       centerX = centerX + schCompModel[i].getProps('pose').x;
                       centerY = centerY + schCompModel[i].getProps('pose').y;
                     }
                     centerX = centerX / schCompModel.length;
                     centerY = centerY / schCompModel.length;
-                    for (var i = 0; i < schCompModel.length; i++) {
+                    for (let i = 0; i < schCompModel.length; i++) {
                       schCompModel[i].moveBy(x - centerX, y - centerY);
                     }
                     schCurrent = schState.moving;
@@ -200,14 +202,14 @@ function initEvents() {
     switch(schCurrent){
       case schState.placing://state placing
         if (schCompModel != undefined) {
-          for (var i = 0; i < schCompModel.length; i++) {
+          for (let i = 0; i < schCompModel.length; i++) {
             schCompModel[i].moveTo(schPrevX, schPrevY);
           }  
         }
         break;
       case schState.moving://state moving
         if(schCompModel != undefined){
-          for (var i = 0; i < schCompModel.length; i++) {
+          for (let i = 0; i < schCompModel.length; i++) {
             schCompModel[i].moveBy(x - schPrevX, y - schPrevY);
           }
         }
@@ -219,7 +221,7 @@ function initEvents() {
   //mousedown events for svg (click in the blank)
   $('#svg').mousedown(function (ev) {
     if(schCompModel != undefined){
-      for (var i = 0; i < schCompModel.length; i++) {
+      for (let i = 0; i < schCompModel.length; i++) {
         schCompModel[i].setProps('events', { selected: false });
       }
         schCompModel = undefined;

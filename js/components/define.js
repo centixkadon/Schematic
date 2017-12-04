@@ -1,9 +1,4 @@
 /* 预期目标
-将以下代码复制到 js/test/test.js 中，应在结构体schComponents中添加器件 电源和地。
-或者这样appendToSchComponents("gnd").add("line",0,0,0,10).add("line",-15,10,15,10).add("line",-10,15,10,15).add("line",-5,20,5,20);
-appendToSchComponents("vcc").add("line",-10,-10,10,-10,0,-10,0,0);
-add()目前可以添加直线，曲线，圆，多边形，矩形。。。。要什么加什么。。。
-参数对应看svg构建对应图形需要什么参数 
 */
 
 function defineComponent(componentName) {
@@ -52,7 +47,8 @@ Array.prototype.has = function (name) {
       temp.mark = name;
       temp.attr = new Object();
       temp.attr.cx = arguments[1];
-      temp.attr.style = arguments[2];
+      temp.attr.cy = arguments[2];
+      temp.attr.r = arguments[3];
       this.push(temp);
       break;
     case "polygon":
@@ -71,6 +67,14 @@ Array.prototype.has = function (name) {
       temp.attr.height = arguments[2];
       temp.attr.style = arguments[3];
       this.push(temp);
+      break;
+      case "points":
+      for (let i = 1; i < arguments.length; ++i) {
+        this.push({
+          mark: "circle",
+          attr: { cx: arguments[i][0], cy: arguments[i][1], r: 1,},//点的默认半径为1
+        });
+      }
       break;
   }
   return this;

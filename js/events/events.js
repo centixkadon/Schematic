@@ -111,9 +111,19 @@ function initEvents() {
             break;
           case 81://Q
             //turn 90 deg counter clockwise
+            if (schCompModel != undefined) {
+              for (let i = 0; i < schCompModel.length; i++) {
+                schCompModel[i].rotateBy(-90);
+              }
+            }
             break;
           case 69://E
             //turn 90 deg clockwise
+            if (schCompModel != undefined) {
+              for (let i = 0; i < schCompModel.length; i++) {
+                schCompModel[i].rotateBy(90);
+              }
+            }
             break;
           case 67://C
             if (ev.ctrlKey) {//ctrl+c

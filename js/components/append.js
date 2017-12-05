@@ -15,3 +15,6 @@ jQuery.prototype.appendComponent = function (componentName) {
   }
   return this.append(svgGroup);
 }
+
+
+

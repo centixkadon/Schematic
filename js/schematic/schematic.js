@@ -12,7 +12,7 @@ let schSchematic = [];
 $.fn.extend({
   updateTransform: function () {
     let props = this.getProps('pose');
-    return this.attr('transform', 'translate(' + props.x + ' ' + props.y + ')');
+    return this.attr('transform', 'translate(' + props.x + ',' + props.y + ') rotate(' + props.degree % 360 + ')');
   },
   moveTo: function (toX, toY) {
     let props = this.getProps('pose');
@@ -24,22 +24,29 @@ $.fn.extend({
     props.x += byX; props.y += byY;
     return this.updateTransform();
   },
+  rotateTo: function (deg) {
+    let props = this.getProps('pose');
+    props.degree = deg;
+    return this.updateTransform();
+  },
+  rotateBy: function (deg) {
+    let props = this.getProps('pose');
+    props.degree += deg;
+    return this.updateTransform();
+  },
   removeIt: function () {
     schSchematic[this.getProps('pose').index] = undefined;
     return this.remove();
   },
-  /////旋转器件，deg为旋转角度
-  rotateIt: function (deg) {
-    let props = this.getProps('pose');
-    return this.css('transform','translate(' + props.x + 'px,' + props.y + 'px) rotate(' + deg%360 + 'deg)');
-  }
 });
 
 function createComponent(componentName, componentX, componentY) {
   let component = $s('g').appendComponent(componentName);
   let props = component.getProps('pose');
   [props.index, props.name] = [schSchematic.length, componentName];
-  return component.moveTo(componentX, componentY);
+  [props.x, props.y] = [componentX, componentY];
+  props.degree = 0;
+  return component.updateTransform();
 }
 
 //在 #svgSch 画出对应的元器件并返回创建的jQuery对象

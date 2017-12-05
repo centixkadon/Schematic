@@ -111,19 +111,50 @@ function initEvents() {
             break;
           case 81://Q
             //turn 90 deg counter clockwise
+
             if (schCompModel != undefined) {
+              if (ev.shiftKey) {
+                centerX = 0, centerY = 0;
+                for (let i = 0; i < schCompModel.length; i++) {
+                  centerX = centerX + schCompModel[i].getProps('pose').x;
+                  centerY = centerY + schCompModel[i].getProps('pose').y;
+                }
+                centerX = centerX / schCompModel.length;
+                centerY = centerY / schCompModel.length;
+                for (let i = 0; i < schCompModel.length; i++) {
+                  schCompModel[i].rotateBy(-90);
+                  schCompModel[i].moveTo(centerX + centerY - schCompModel[i].getProps('pose').y, schCompModel[i].getProps('pose').x - centerX + centerY);
+                }
+              }
+              else{
               for (let i = 0; i < schCompModel.length; i++) {
                 schCompModel[i].rotateBy(-90);
+                }
               }
             }
             break;
           case 69://E
             //turn 90 deg clockwise
             if (schCompModel != undefined) {
-              for (let i = 0; i < schCompModel.length; i++) {
-                schCompModel[i].rotateBy(90);
+              if (ev.shiftKey) {
+                centerX = 0, centerY = 0;
+                for (let i = 0; i < schCompModel.length; i++) {
+                  centerX = centerX + schCompModel[i].getProps('pose').x;
+                  centerY = centerY + schCompModel[i].getProps('pose').y;
+                }
+                centerX = centerX / schCompModel.length;
+                centerY = centerY / schCompModel.length;
+                for (let i = 0; i < schCompModel.length; i++) {
+                  schCompModel[i].rotateBy(90);
+                  schCompModel[i].moveTo(centerX - centerY + schCompModel[i].getProps('pose').y, -schCompModel[i].getProps('pose').x + centerX + centerY);
+                }
               }
-            }
+              else {
+                for (let i = 0; i < schCompModel.length; i++) {
+                  schCompModel[i].rotateBy(90);
+                }
+              }
+            }  
             break;
           case 67://C
             if (ev.ctrlKey) {//ctrl+c

@@ -17,7 +17,8 @@ $(document).ready(ev => {
 
   setComponentsScale(schConfig.componentsScale);
 
-  initEvents();
+  schEvents();
+
 
   $('#svg').mousemove(function (ev) {
     let [x, y] = getSchPos(ev);

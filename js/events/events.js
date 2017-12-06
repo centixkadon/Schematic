@@ -45,6 +45,7 @@ function initEvents() {
                     point._x = $(this).getMove().x;
                     point._y = $(this).getMove().y;
                     pointsList.push(point);
+
                     if(pointsList.length < 2) {
                       $('#svg').mousemove(function (ev) {
                         for(let i =0;i < delList.length - 1;i++) {
@@ -59,6 +60,10 @@ function initEvents() {
                     }
 
                     if (pointsList.length >= 2) {
+                      for(let i =0;i < delList.length ;i++) {
+                          delList[i].removeIt();
+                        }
+
                       defineComponent('line').has('line', [pointsList[0]._x, pointsList[0]._y, pointsList[1]._x, pointsList[0]._y])
                         .has('line', [pointsList[1]._x, pointsList[0]._y, pointsList[1]._x, pointsList[1]._y]);
                       lineList.push(drawComponent('line', 0, 0).moveTo(0, 0).mousedown(function (ev) {

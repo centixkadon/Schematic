@@ -12,7 +12,7 @@
   //let comp = undefined;
   
   let pointsList = [];
-  let lineList = [];//这里存放所以画出的连接线
+  let lineList = [];
   /* function initEvents: bind events with buttons and components*/
     function initEvents() {
       for (let key in schComponents){

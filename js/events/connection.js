@@ -6,11 +6,12 @@ let curConnection = connectionState.notconnecting;
  
 
 //let pointsList = [];
-//let lineList = [];//这里存放所以画出的连接线
+//let lineList = [];
 
 function schEvents() {
 
 	initEvents();
+  
 	//切换摆放元器件对象和连线状态
 	$('body').keydown(function (ev) {
 		switch(ev.which) {

@@ -123,7 +123,7 @@ function initEvents() {
                 centerY = centerY / schCompModel.length;
                 for (let i = 0; i < schCompModel.length; i++) {
                   schCompModel[i].rotateBy(-90);
-                  schCompModel[i].moveTo(centerX + centerY - schCompModel[i].getProps('pose').y, schCompModel[i].getProps('pose').x - centerX + centerY);
+                  schCompModel[i].moveTo(centerX - centerY + schCompModel[i].getProps('pose').y, -schCompModel[i].getProps('pose').x + centerX + centerY);
                 }
               }
               else{
@@ -146,7 +146,7 @@ function initEvents() {
                 centerY = centerY / schCompModel.length;
                 for (let i = 0; i < schCompModel.length; i++) {
                   schCompModel[i].rotateBy(90);
-                  schCompModel[i].moveTo(centerX - centerY + schCompModel[i].getProps('pose').y, -schCompModel[i].getProps('pose').x + centerX + centerY);
+                  schCompModel[i].moveTo(centerX + centerY - schCompModel[i].getProps('pose').y, schCompModel[i].getProps('pose').x - centerX + centerY);
                 }
               }
               else {

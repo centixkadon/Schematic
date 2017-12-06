@@ -25,6 +25,11 @@ $.fn.extend({
     props.x += byX; props.y += byY;
     return this.updateTransform();
   },
+  getMove: function () {
+    let props = this.getProps('pose');
+    return { x: props.x, y: props.y };
+  },
+
   rotateTo: function (deg) {
     let props = this.getProps('pose');
     props.degree = deg;
@@ -35,38 +40,43 @@ $.fn.extend({
     props.degree += deg;
     return this.updateTransform();
   },
+  getRotate: function () {
+    return this.getProps('pose').degree;
+  },
+
+  updateSelected: function () {
+    let props = this.getProps('pose');
+    if (props.isSelected) this.attr('class', 'component-selected');
+    else this.attr('class', 'component-unselected');
+    return this;
+  },
+  selectedTo: function (isSelected) {
+    let props = this.getProps('pose');
+    props.isSelected = isSelected;
+    return this.updateSelected();
+  },
+  selectedBy: function () {
+    let props = this.getProps('pose');
+    props.isSelected = !props.isSelected;
+    return this.updateSelected();
+  },
+  isSelected: function () {
+    return this.getProps('pose').isSelected;
+  },
+
   removeIt: function () {
     schSchematic[this.getProps('pose').index] = undefined;
     return this.remove();
   },
 
-  setSelected: function (isSelected) {
-    let props = this.getProps('pose');
-    if (isSelected === undefined) isSelected = true;
-    props.isSelected = isSelected;
-    if (props.isSelected) this.attr('class', 'component-selected');
-    else this.attr('class', 'component-unselected');
-    return this;
-  },
-  setUnselected: function () {
-    let props = this.getProps('pose');
-    props.isSelected = false;
-    if (props.isSelected) this.attr('class', 'component-selected');
-    else this.attr('class', 'component-unselected');
-    return this;
-  },
-  isSelected: function () {
-    return this.getProps('pose').isSelected;
-  }
 });
 
 function createComponent(componentName, componentX, componentY) {
   let component = $s('g').appendComponent(componentName);
   let props = component.getProps('pose');
   [props.index, props.name] = [schSchematic.length, componentName];
-  [props.x, props.y] = [componentX, componentY];
-  props.degree = 0;
-  return component.updateTransform().setSelected(false);
+  [props.x, props.y, props.degree] = [componentX, componentY, 0];
+  return component.updateTransform().selectedTo(false);
 }
 
 //在 #svgSch 画出对应的元器件并返回创建的jQuery对象

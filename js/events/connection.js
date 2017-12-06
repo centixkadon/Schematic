@@ -92,3 +92,18 @@ function schEvents() {
     }
   });
 }
+
+$('body').keydown(function (ev) {
+  if(curConnection) {
+    switch (ev.which) {
+    case 27://esc
+      for(let i =0; i < delList.length; i++) {
+        delList[i].removeIt();
+        for (let key in pointsList) {//当得到两个点坐标之后清空存储点的数组
+          pointsList.pop();
+        }
+      }
+      break;
+    }
+  }
+});

@@ -116,7 +116,14 @@ componentVcc.isSelected();                             // 返回是否被选择
 componentVcc.removeIt();                               // 删除元器件，返回componentVcc（虽然没什么用）
 ```
 
-### 预期目标3
+### 预期目标6：其它
+
+```javascript
+// 以下代码可以返回元器件名。
+componentVcc.getName();                                // 返回元器件名
+```
+
+### 预期目标7
 
 ```javascript
 // 将以下代码复制到 js/test/test.js 中，应从 #svgButton 左上角开始，依次画出电源和地，并返回对应的jQuery对象。

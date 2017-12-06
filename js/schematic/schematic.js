@@ -11,6 +11,10 @@
 let schSchematic = [];
 
 $.fn.extend({
+  getName: function () {
+    return this.getProps('pose').name;
+  },
+
   updateTransform: function () {
     let props = this.getProps('pose');
     return this.attr('transform', 'translate(' + props.x + ',' + props.y + ') rotate(' + props.degree % 360 + ')');

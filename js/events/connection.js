@@ -47,7 +47,13 @@ function schEvents() {
             .has('line', [pointsList[1]._x, pointsList[0]._y,pointsList[1]._x,pointsList[1]._y]);
       			lineList.push(drawComponent('line', 0, 0).moveTo(x-pointsList[1]._x, y-pointsList[1]._y).mousedown(function(ev)
             {
-              $(this).setProps('events', { selected: true });
+              if( $(this).getProps('events').selected == true){
+                $(this).setProps('events', { selected: false });
+              }
+              else {
+                $(this).setProps('events', { selected: true });
+              }
+              
             }));//将画出的连接线加到lineList里
       			for(let key in pointsList) {//当得到两个点坐标之后清空存储点的数组
       				pointsList.pop();

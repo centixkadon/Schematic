@@ -47,7 +47,12 @@ function initEvents() {
                       defineComponent('line').has('line', [pointsList[0]._x, pointsList[0]._y, pointsList[1]._x, pointsList[0]._y])
                         .has('line', [pointsList[1]._x, pointsList[0]._y, pointsList[1]._x, pointsList[1]._y]);
                       lineList.push(drawComponent('line', 0, 0).moveTo(0, 0).mousedown(function (ev) {
-                        $(this).addSelected();
+                        if ($(this).hasSelected() == true) {
+                          $(this).removeSelected();
+                        }
+                        else {
+                          $(this).addSelected();
+                        }
                       }));//将画出的连接线加到lineList里
                       for (let key in pointsList) {//当得到两个点坐标之后清空存储点的数组
                         pointsList.pop();

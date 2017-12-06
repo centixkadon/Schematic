@@ -13,6 +13,9 @@ let keyList = undefined;
 
 let pointsList = [];
 let lineList = [];
+let delList = [];
+
+
 /* function initEvents: bind events with buttons and components*/
 function initEvents() {
   for (let key in schComponents) {
@@ -42,6 +45,18 @@ function initEvents() {
                     point._x = $(this).getMove().x;
                     point._y = $(this).getMove().y;
                     pointsList.push(point);
+                    if(pointsList.length < 2) {
+                      $('#svg').mousemove(function (ev) {
+                        for(let i =0;i < delList.length - 1;i++) {
+                          delList[i].removeIt();
+                        }
+
+                        [c,d] = getSchPos(ev);
+
+                        defineComponent('line1').has('line', [pointsList[0]._x, pointsList[0]._y, c, pointsList[0]._y]).has('line', [c, pointsList[0]._y, c, d]);
+                        delList.push(drawComponent('line1', 0, 0).moveTo(0, 0));
+                      });
+                    }
 
                     if (pointsList.length >= 2) {
                       defineComponent('line').has('line', [pointsList[0]._x, pointsList[0]._y, pointsList[1]._x, pointsList[0]._y])

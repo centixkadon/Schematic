@@ -7,6 +7,7 @@ let curConnection = connectionState.notconnecting;
 
 //let pointsList = [];
 //let lineList = [];
+//let delList = [];
 
 function schEvents() {
 
@@ -41,6 +42,21 @@ function schEvents() {
         point._x = x;
         point._y = y;
         pointsList.push(point);//将每次点击的坐标存储到pointsList里 
+        if(pointsList.length < 2) {
+          $('#svg').mousemove(function (ev) {
+            for(let i =0;i < delList.length - 1;i++) {
+              delList[i].removeIt();
+            }
+
+            [a,b] = getSchPos(ev);
+
+            defineComponent('line1').has('line', [pointsList[0]._x, pointsList[0]._y, a, pointsList[0]._y]).has('line', [a, pointsList[0]._y, a, b]);
+            delList.push(drawComponent('line1', 0, 0).moveTo(a - a, b - b));
+
+
+          });
+
+        }
 
         if (pointsList.length >= 2) {
           defineComponent('line').has('line', [pointsList[0]._x, pointsList[0]._y, pointsList[1]._x, pointsList[0]._y])
@@ -61,6 +77,8 @@ function schEvents() {
       }
     }
   });
+
+  
 
   $('body').keydown(function (ev) {
     switch (ev.which) {

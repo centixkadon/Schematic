@@ -1,12 +1,10 @@
 
-.component-selected{
-  stroke: #FF0000;
-  stroke-width: 3;
+#svgButton g, #svgSch g {
+  stroke: #A00;
+  stroke-width: 2;
   fill: none;
 }
 
-.component-unselected{
-  stroke: #A00000;
-  stroke-width: 2;
-  fill: none;
+#svgSch .component-selected {
+  stroke: #F00;
 }

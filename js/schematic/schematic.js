@@ -39,16 +39,24 @@ $.fn.extend({
     schSchematic[this.getProps('pose').index] = undefined;
     return this.remove();
   },
-  selectIt: function () {
+
+  setSelected: function (isSelected) {
     let props = this.getProps('pose');
-    props.select = true;
-    return this.addClass('selected');
+    if (isSelected === undefined) isSelected = true;
+    props.isSelected = isSelected;
+    if (props.isSelected) this.attr('class', 'component-selected');
+    else this.attr('class', 'component-unselected');
+    return this;
   },
-  unselectIt: function () {
+  setUnselected: function () {
     let props = this.getProps('pose');
-    props.select = false;
-    this.removeClass('selected');
-    return this.addClass('unselect');
+    props.isSelected = false;
+    if (props.isSelected) this.attr('class', 'component-selected');
+    else this.attr('class', 'component-unselected');
+    return this;
+  },
+  isSelected: function () {
+    return this.getProps('pose').isSelected;
   }
 });
 
@@ -58,7 +66,7 @@ function createComponent(componentName, componentX, componentY) {
   [props.index, props.name] = [schSchematic.length, componentName];
   [props.x, props.y] = [componentX, componentY];
   props.degree = 0;
-  return component.updateTransform();
+  return component.updateTransform().setSelected(false);
 }
 
 //在 #svgSch 画出对应的元器件并返回创建的jQuery对象

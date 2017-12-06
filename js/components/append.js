@@ -5,7 +5,6 @@ jQuery.prototype.appendComponent = function (componentName) {
     for (let attrId in objAttr.attr) {
       obj.attr(attrId, objAttr.attr[attrId]);
     }
-    obj.attr('stroke', '#A00000').attr('stroke-width', '2');
     return obj;
   }
 

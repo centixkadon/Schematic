@@ -15,3 +15,4 @@ defineComponent('测试用大杂烩元器件')
   .has('point', [0, -20], [0, 20], [-20, -20], [-20, 20], [20, -20], [20, 20]);
 //add by liming 0.0
 defineComponent('hongZhong').has('rect', [-18, -20, 36, 40]).has('polygon', [-11, 0, 11, 0, 13, -10, -13, -10]).has('line', [0,-18, 0,18]);
+defineComponent('Benz').has('circle',[50,50,20]).has('line',[50,50,50,30]).has('line',[50,50,70,59]).has('line',[50,50,30,59]);

@@ -6,6 +6,7 @@ defineComponent('resistance').has('line', [-10, 5, 10, 5], [-10, -5, 10, -5], [-
 defineComponent('potentiometer').has('line', [-10, 5, 10, 5], [-10, -5, 10, -5], [-10, -5, -10, 5], [10, -5, 10, 5], [10, 0, 20, 0], [-10, 0, -20, 0], [0, -5, 0, -13], [0, -13, 20, -13]).has('point', [20, 0], [-20, 0], [18, -13]).has('polyline', [4, -9, 0, -5, -4, -9]);
 defineComponent('capacity').has('line', [-4, -13, -4, 13], [4, 13, 4, -13], [4, 0, 20, 0], [-20, 0, -4, 0]).has('point', [20, 0], [-20, 0]);
 defineComponent('inductor').has('polyline', [-10, 0, -7.5, -5, -5, 0, -2.5, -5, 0, 0, 2.5, -5, 5, 0, 7.5, -5, 10, 0]).has('line', [10, 0, 20, 0], [-10, 0, -20, 0], [-10, -10, 10, -10]).has('point', [20, 0], [-20, 0]);
+//test test test test 
 // 以下测试用
 defineComponent('电压源').has('line', [0, -20, 0, 20]).has('circle', [0, 0, 13]).has('point', [0, -20], [0, 20]);
 defineComponent('电流源').has('line', [0, -13, 0, -20], [-13, 0, 13, 0], [0, 13, 0, 20]).has('circle', [0, 0, 13]).has('point', [0, -20], [0, 20]);

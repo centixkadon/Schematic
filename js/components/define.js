@@ -53,6 +53,18 @@ Array.prototype.has = function (componentName) {
         });
       }
       break;
+    case 'arc':
+      for (let i = 1; i < arguments.length; ++i) {
+        if (!((arguments[i] instanceof Array) && (arguments[i].length === 7))) {
+          throw ".has('arc', [x1, y1, x2, y2, r, isLargeArc, isClockwise], ...) 使用出错，例子参照 https://github.com/centixkadon/Schematic/blob/master/js/README.md";
+        }
+        let [x1, y1, x2, y2, r, isLargeArc, isClockwise] = arguments[i];
+        this.push({
+          mark: 'path',
+          attr: { d: 'M ' + (x1) + ' ' + (y1) + ' A ' + r + ' ' + r + ' 0 ' + isLargeArc + ' ' + isClockwise + ' ' + x2 + ' ' + y2, },
+        });
+      }
+      break;
     case 'polyline':
     case 'polygon':
       for (let i = 1; i < arguments.length; ++i) {

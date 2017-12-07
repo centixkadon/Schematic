@@ -22,8 +22,20 @@ $('#svgTestAppendComponent2').appendComponent('gnd');
 ```
 ```javascript
 // 将以下代码复制到 js/test/test.js 中，应在schComponents结构体中添加相应的线（或者其他svg元素）构成的元器件地和电源数组。
-defineComponent('vcc').has('line', [-10, -10, 10, -10]).has('line', [0, -10, 0, 0]);
+defineComponent('vcc').has('line', [-10, -10, 10, -10], [0, -10, 0, 0]);
 defineComponent('gnd').has('line', [0, 0, 0, 10], [-15, 10, 15, 10], [-10, 15, 10, 15], [-5, 20, 5, 20]);
+```
+```javascript
+// 将以下代码复制到 js/test/test.js 中，应在schComponents结构体中添加一个很蠢的元器件。
+defineComponent('电压源').has('line', [0, -20, 0, 20]).has('circle', [0, 0, 13]).has('point', [0, -20], [0, 20]);
+defineComponent('电流源').has('line', [0, -13, 0, -20], [-13, 0, 13, 0], [0, 13, 0, 20]).has('circle', [0, 0, 13]).has('point', [0, -20], [0, 20]);
+defineComponent('测试用大杂烩元器件')
+  .has('line', [20, -20, 20, 20], [-20, -20, -20, 20])
+  .has('circle', [0, -13, 3], [0, 13, 3])
+  .has('rect', [10, 10, 5, 10], [-15, -20, 5, 10])
+  .has('polyline', [15, -20, 10, -10, 15, -10], [-15, 20, -10, 10, -15, 10])
+  .has('polygon', [-2, 0, -6, 6, -10, 3, -14, 6, -17, -6, -12, -3, -7, -6], [2, 0, 6, -6, 10, -3, 14, -6, 17, 6, 12, 3, 7, 6], )
+  .has('point', [0, -20], [0, 20], [-20, -20], [-20, 20], [20, -20], [20, 20]);
 ```
 
 ## 2. 电路原理图结构体

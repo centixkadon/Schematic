@@ -25,6 +25,18 @@ $('#svgTestAppendComponent2').appendComponent('gnd');
 defineComponent('vcc').has('line', [-10, -10, 10, -10], [0, -10, 0, 0]);
 defineComponent('gnd').has('line', [0, 0, 0, 10], [-15, 10, 15, 10], [-10, 15, 10, 15], [-5, 20, 5, 20]);
 ```
+
+各接口使用方法如下：
+
+```javascript
+defineComponent('blablabla')                           // 定义名字为blablabla的元器件，名字不能重复，可以是中文
+.has('line', [x1, y1, x2, y2], ...)                    // 添加线
+.has('circle', [x, y, r], ...)                         // 添加圆
+.has('rect', [x, y, width, height], ...)               // 添加矩形
+.has('polyline', [x1, y1, x2, y2, ..., xn, yn], ...)   // 添加折线
+.has('polygon', [x1, y1, x2, y2, ..., xn, yn], ...)    // 添加多边形
+.has('point', [x, y], ...)                             // 添加点
+```
 ```javascript
 // 将以下代码复制到 js/test/test.js 中，应在schComponents结构体中添加一个很蠢的元器件。
 defineComponent('电压源').has('line', [0, -20, 0, 20]).has('circle', [0, 0, 13]).has('point', [0, -20], [0, 20]);

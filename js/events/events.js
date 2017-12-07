@@ -74,14 +74,15 @@ function initEvents() {
                         .has('line', [pointsList[1]._x, pointsList[0]._y, pointsList[1]._x, pointsList[1]._y]);
                         //let temp = drawComponent('line', 0, 0).moveTo(0, 0);
 
-                        lineList.push(drawComponent('line', 0, 0).moveTo(0, 0).on('mousedown touchstart', function (ev) {
+                        lineList.push([drawComponent('line', 0, 0).moveTo(0, 0).on('mousedown touchstart', function (ev) {
                           if ($(this).hasSelected() == true) {
                             $(this).removeSelected();
                           }
                           else {
                             $(this).addSelected();
                           }
-                        }));
+                        }),[pointsList[0],pointsList[1]]]);
+
 
                       clist[0] = pointsList[0];
                       clist[1] = pointsList[1];

@@ -43,8 +43,9 @@ function schEvents() {
         point._y = y;
         pointsList.push(point);//将每次点击的坐标存储到pointsList里 
         if(pointsList.length < 2) {
-          $('#svg').mousemove(function (ev) {
-            for(let i =0;i < delList.length - 1;i++) {
+           $('#svg').mousemove(function (ev) {
+            if(pointsList.length>0) {
+              for(let i =0;i < delList.length - 1;i++) {
               delList[i].removeIt();
             }
 
@@ -52,10 +53,9 @@ function schEvents() {
 
             defineComponent('line1').has('line', [pointsList[0]._x, pointsList[0]._y, a, pointsList[0]._y]).has('line', [a, pointsList[0]._y, a, b]);
             delList.push(drawComponent('line1', 0, 0).moveTo(a - a, b - b));
-
-
+            }
           });
-
+          
         }
 
         if (pointsList.length >= 2) {
@@ -91,6 +91,32 @@ function schEvents() {
         break;
     }
   });
+
+$('body').keydown(function (ev) { //在连接线被选中的情况下 按下c可以转换连接形式
+  //console.log(connectStyle);
+  switch (ev.which) {
+    case 67:
+    if(!connectStyle) {
+      lineList.pop().removeIt();
+      //console.log(clist.length);
+      defineComponent('line').has('line', [clist[0]._x, clist[0]._y, clist[0]._x, clist[1]._y])
+      .has('line', [clist[0]._x, clist[1]._y, clist[1]._x, clist[1]._y]);
+      lineList.push(drawComponent('line', 0, 0).moveTo(0, 0));
+      connectStyle = !connectStyle;
+      //console.log(connectStyle);
+    }
+    else if(connectStyle){
+      lineList.pop().removeIt();
+      defineComponent('line').has('line', [clist[0]._x, clist[0]._y, clist[1]._x, clist[0]._y])
+      .has('line', [clist[1]._x, clist[0]._y, clist[1]._x, clist[1]._y]);
+      lineList.push(drawComponent('line', 0, 0).moveTo(0, 0));
+      connectStyle = !connectStyle;
+      //console.log(connectStyle);
+    }
+    break;
+
+  }
+})
 }
 
 $('body').keydown(function (ev) {
@@ -107,3 +133,5 @@ $('body').keydown(function (ev) {
     }
   }
 });
+
+

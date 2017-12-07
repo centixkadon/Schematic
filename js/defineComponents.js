@@ -29,6 +29,6 @@ defineComponent('hongZhong').has('rect', [-18, -20, 36, 40]).has('polygon', [-11
 defineComponent('beiFeng').has('rect', [-18, -20, 36, 40]).has('line', [-4, -10, -4, 10], [4, -10, 4, 10], [-10, 0, -4, 0], [4, 0, 10, 0], [-18, 10, -4, 10], [4, 10, 18, 10]);
 defineComponent('huaji').has('circle', [0, 0, 20]).has('line', [-15, -6, -10, -12], [-10, -12, -5, -6], [5, -6, 10, -12], [10, -12, 15, -6], [-8, 6, 0, 12], [0, 12, 8, 6]).has('point', [-15, -6], [5, -6]);
 defineComponent('weixiao').has('circle', [0, 0, 20],[-10,-8,3],[10,-8,3]).has('line', [-8, 6, 0, 12], [0, 12, 8, 6]).has('point', [-10, -8], [10, -8]);
-defineComponent('Benz').has('circle',[0,0,20]).has('line',[0,0,0,-20]).has('line',[0,0,20,9]).has('line',[0,0,-20,9]);
+defineComponent('Benz').has('circle', [0, 0, 20]).has('line', [0, 0, 0, -20], [0, 0, 20 * Math.sin(Math.PI / 3), 20 * Math.cos(Math.PI / 3)], [0, 0, 20 * Math.sin(-Math.PI / 3), 20 * Math.cos(-Math.PI / 3)]);
 //add by Seki =.=
 defineComponent('Facai').has('line', [-16, -16, -2, -16], [-2, -16, -18, -4], [-16, -12, -10, -8], [2, -16, 17, -5], [5, -11, 10, -18], [9, -9, 14, -16]).has('polyline', [-16, 0, -2, 0, -2, 5, -16, 5, -16, 10, -2, 10, -2, 18, -16, 18]).has('polyline', [2, 5, 5, 5, 5, 0, 12, 0, 12, 5, 16, 5]).has('polyline', [16, 18, 2, 10, 15, 10, 4, 18]).has('line', [16, 18, 18, 18]).has('rect', [-20, -20, 40, 40]);

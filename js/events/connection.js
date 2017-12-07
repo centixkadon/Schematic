@@ -45,55 +45,54 @@ function schEvents() {
         break;
       case 67://c
         for(let i=0; i<lineList.length; i++) {
-        if(lineList[i].hasSelected() == true) {
-          //console.log("1111");
-          if(!curConnection) {
-            if(clist.length == 2) {
-          //case 67://c
-          if(!connectStyle) {
+          if(lineList[i].hasSelected() == true) {
+            //console.log("1111");
+            if(!curConnection) {
+              if(clist.length == 2) {
+                //case 67://c
+                if(!connectStyle) {
 
-            for( let i=0; i<lineList.length;i++) {
-              if(lineList[i].hasSelected() == true)
-                lineList[i].removeIt();
+                  for( let i=0; i<lineList.length;i++) {
+                    if(lineList[i].hasSelected() == true)
+                      lineList[i].removeIt();
+                  }
+                  //lineList.pop().removeIt();
+                  //console.log(clist.length);
+                  defineComponent('line').has('line', [clist[0]._x, clist[0]._y, clist[0]._x, clist[1]._y]).has('line', [clist[0]._x, clist[1]._y, clist[1]._x, clist[1]._y]);
+                  lineList.push(drawComponent('line', 0, 0).moveTo(0, 0)
+                  .mousedown(function (ev) {
+                    if ($(this).hasSelected() == true) {
+                      $(this).removeSelected();
+                    }
+                    else {
+                      $(this).addSelected();
+                    }
+                  }));
+                  connectStyle = !connectStyle;
+                  //console.log(connectStyle);
+                }
+                else if(connectStyle){
+                  for( let i=0; i<lineList.length;i++) {
+                    if(lineList[i].hasSelected() == true)
+                      lineList[i].removeIt();
+                  }
+                  //lineList.pop().removeIt();
+                  defineComponent('line').has('line', [clist[0]._x, clist[0]._y, clist[1]._x, clist[0]._y]).has('line', [clist[1]._x, clist[0]._y, clist[1]._x, clist[1]._y]);
+                  lineList.push(drawComponent('line', 0, 0).moveTo(0, 0)
+                  .mousedown(function (ev) {
+                    if ($(this).hasSelected() == true) {
+                      $(this).removeSelected();
+                    }
+                    else {
+                      $(this).addSelected();
+                    }
+                  }));
+                  connectStyle = !connectStyle;
+                  //console.log(connectStyle);  
+                }
+              } 
             }
-            //lineList.pop().removeIt();
-            //console.log(clist.length);
-            defineComponent('line').has('line', [clist[0]._x, clist[0]._y, clist[0]._x, clist[1]._y])
-            .has('line', [clist[0]._x, clist[1]._y, clist[1]._x, clist[1]._y]);
-            lineList.push(drawComponent('line', 0, 0).moveTo(0, 0).mousedown(function (ev) {
-              if ($(this).hasSelected() == true) {
-                $(this).removeSelected();
-              }
-              else {
-                $(this).addSelected();
-              }
-          }));
-            connectStyle = !connectStyle;
-            //console.log(connectStyle);
           }
-          else if(connectStyle){
-            for( let i=0; i<lineList.length;i++) {
-              if(lineList[i].hasSelected() == true)
-                lineList[i].removeIt();
-            }
-            //lineList.pop().removeIt();
-            defineComponent('line').has('line', [clist[0]._x, clist[0]._y, clist[1]._x, clist[0]._y])
-            .has('line', [clist[1]._x, clist[0]._y, clist[1]._x, clist[1]._y]);
-            lineList.push(drawComponent('line', 0, 0).moveTo(0, 0).mousedown(function (ev) {
-              if ($(this).hasSelected() == true) {
-                $(this).removeSelected();
-              }
-              else {
-                $(this).addSelected();
-              }
-          }));
-            connectStyle = !connectStyle;
-            //console.log(connectStyle);  
-          }
-        //break;
-            } 
-          }
-        }
         }
         break;  
     }
@@ -112,33 +111,31 @@ function schEvents() {
         point._x = x;
         point._y = y;
         pointsList.push(point);//将每次点击的坐标存储到pointsList里 
+        /*
         if(pointsList.length < 2) {
            $('#svg').mousemove(function (ev) {
-            if(pointsList.length>0) {
-              for(let i =0;i < delList.length - 1;i++) {
-              delList[i].removeIt();
-            }
+              if(pointsList.length>0) {
+                for(let i =0;i < delList.length - 1;i++) {
+                  delList[i].removeIt();
+                }
 
-            [a,b] = getSchPos(ev);
+                [a,b] = getSchPos(ev);
 
-            defineComponent('line1').has('line', [pointsList[0]._x, pointsList[0]._y, a, pointsList[0]._y]).has('line', [a, pointsList[0]._y, a, b]);
-            delList.push(drawComponent('line1', 0, 0).moveTo(a - a, b - b));
-            }
-          });
-          
-        }
-
+                defineComponent('line1').has('line', [pointsList[0]._x, pointsList[0]._y, a, pointsList[0]._y]).has('line', [a, pointsList[0]._y, a, b]);
+                delList.push(drawComponent('line1', 0, 0).moveTo(a - a, b - b));
+              }
+            }); 
+        }*/
         if (pointsList.length >= 2) {
-          defineComponent('line').has('line', [pointsList[0]._x, pointsList[0]._y, pointsList[1]._x, pointsList[0]._y])
-            .has('line', [pointsList[1]._x, pointsList[0]._y, pointsList[1]._x, pointsList[1]._y]);
-          lineList.push(drawComponent('line', 0, 0).moveTo(x - pointsList[1]._x, y - pointsList[1]._y).mousedown(function (ev) {
+          defineComponent('line').has('line', [pointsList[0]._x, pointsList[0]._y, pointsList[1]._x, pointsList[0]._y]).has('line', [pointsList[1]._x, pointsList[0]._y, pointsList[1]._x, pointsList[1]._y]);
+          lineList.push(drawComponent('line', 0, 0).moveTo(x - pointsList[1]._x, y - pointsList[1]._y)
+          .mousedown(function (ev) {
             if ($(this).hasSelected() == true) {
               $(this).removeSelected();
             }
             else {
               $(this).hasSelected();
             }
-
           }));//将画出的连接线加到lineList里
           for (let key in pointsList) {//当得到两个点坐标之后清空存储点的数组
             pointsList.pop();
@@ -148,7 +145,21 @@ function schEvents() {
     }
   });
 
-  
+  $('#svg').mousemove(function (ev) {
+    if(pointsList.length < 2) {
+      if(pointsList.length>0) {
+        for(let i =0;i < delList.length - 1;i++) {
+          delList[i].removeIt();
+        }
+
+        [a,b] = getSchPos(ev);
+
+        defineComponent('line1').has('line', [pointsList[0]._x, pointsList[0]._y, a, pointsList[0]._y]).has('line', [a, pointsList[0]._y, a, b]);
+        delList.push(drawComponent('line1', 0, 0).moveTo(a - a, b - b));
+      }
+    }
+  }); 
+
 /*
   $('body').keydown(function (ev) {
     switch (ev.which) {
@@ -234,8 +245,4 @@ function schEvents() {
       }
     }
   });*/
-
-
-
 }
-

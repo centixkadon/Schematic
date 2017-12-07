@@ -26,7 +26,7 @@ defineComponent('vcc').has('line', [-10, -10, 10, -10], [0, -10, 0, 0]);
 defineComponent('gnd').has('line', [0, 0, 0, 10], [-15, 10, 15, 10], [-10, 15, 10, 15], [-5, 20, 5, 20]);
 ```
 
-各接口使用方法如下：
+限制元器件范围为-20到20，x方向为从左到右，y方向为从上到下。各接口使用方法如下：
 
 ```javascript
 defineComponent('blablabla')                           // 定义名字为blablabla的元器件，名字不能重复，可以是中文

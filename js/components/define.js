@@ -23,7 +23,7 @@ Array.prototype.has = function (componentName) {
     case 'point':
       for (let i = 1; i < arguments.length; ++i) {
         if (!((arguments[i] instanceof Array) && (arguments[i].length === 2))) {
-          throw ".has('points', [x, y], ...) 使用出错，例子参照 https://github.com/centixkadon/Schematic/blob/master/js/README.md";
+          throw ".has('point', [x, y], ...) 使用出错，例子参照 https://github.com/centixkadon/Schematic/blob/master/js/README.md";
         }
         this.push({
           mark: 'circle',

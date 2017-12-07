@@ -16,3 +16,4 @@ defineComponent('测试用大杂烩元器件')
 //add by liming 0.0
 defineComponent('resistance').has('rect', [-10, -6, 20, 12]).has('line', [-20, 0, -10, 0], [10, 0, 20, 0]).has('point', [-20, 0], [20, 0]);
 defineComponent('capacitance').has('line', [-4, -10, -4, 10], [4, -10, 4, 10], [-14, 0, -4, 0], [4, 0, 14, 0]).has('point', [-14, 0], [14, 0]);
+defineComponent('hongZhong').has('rect', [-20, -35, 40, 70]).has('polygon', [-13, 0, 13, 0, 15, -18, -15, -18]).has('line', [0,-30, 0,33]);

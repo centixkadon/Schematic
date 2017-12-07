@@ -21,7 +21,7 @@ let clist = [];
 /* function initEvents: bind events with buttons and components*/
 function initEvents() {
   for (let key in schComponents) {
-    drawButton(key).mousedown(function (ev) {
+    drawButton(key).on('mousedown touchstart', function (ev) {
       if (1) {
         switch (schCurrent) {
           case schState.none://in theory, only in state none allow to draw components
@@ -35,7 +35,7 @@ function initEvents() {
             schCurrent = schState.placing;
             schCompModel = [
               drawComponent(key, schPrevX, schPrevY)//draw a component and select into schCompModel
-                .mousedown(function (ev) {
+                .on('mousedown touchstart', function (ev) {
                   if (curConnection) {
                     if (pointsList.length > 2) {
                       for (let key in pointsList) {//当得到两个点坐标之后清空存储点的数组
@@ -49,7 +49,7 @@ function initEvents() {
                     pointsList.push(point);
 
                     if(pointsList.length < 2 ) {
-                      $('#svg').mousemove(function (ev) {
+                      $('#svg').on('mousemove touchmove', function (ev) {
                         if(pointsList.length>0) {
                           for(let i =0;i < delList.length - 1;i++) {
                             delList[i].removeIt();
@@ -74,7 +74,7 @@ function initEvents() {
                         .has('line', [pointsList[1]._x, pointsList[0]._y, pointsList[1]._x, pointsList[1]._y]);
                         //let temp = drawComponent('line', 0, 0).moveTo(0, 0);
 
-                        lineList.push(drawComponent('line', 0, 0).moveTo(0, 0).mousedown(function (ev) {
+                        lineList.push(drawComponent('line', 0, 0).moveTo(0, 0).on('mousedown touchstart', function (ev) {
                           if ($(this).hasSelected() == true) {
                             $(this).removeSelected();
                           }
@@ -253,7 +253,7 @@ function initEvents() {
                   }//clear schModelComp, cancel all selected
                   for (let i = 0; i < schCompModelCopy.length; i++) {
                     tempComp = drawComponent(schCompModelCopy[i].getName(), schCompModelCopy[i].getMove().x, schCompModelCopy[i].getMove().y)
-                    tempComp.mousedown(function (ev) {
+                    tempComp.on('mousedown touchstart', function (ev) {
                       switch (schCurrent) {
                         case schState.none://in theory, only in state none allow to select comp
                           schCurrent = schState.moving;
@@ -319,7 +319,7 @@ function initEvents() {
   //$('body').keyup(function(ev){})
 
   //mousemove events
-  $('#svg').mousemove(function (ev) {
+  $('#svg').on('mousemove touchmove', function (ev) {
     if (!curConnection) {
       [x, y] = getSchPos(ev);//get coordinates
       if (x < 0) return;
@@ -345,7 +345,7 @@ function initEvents() {
 
   });
   //mousedown events for svg (click in the blank)
-  $('#svg').mousedown(function (ev) {
+  $('#svg').on('mousedown touchstart', function (ev) {
     if (!curConnection) {
       //console.log(schCompModel.length);
       if (schCompModel != undefined) {
@@ -359,7 +359,7 @@ function initEvents() {
     }
   });
   //components embedded
-  $('#svg').mouseup(function (ev) {//mouse up means not moving comp
+  $('#svg').on('mouseup touchend', function (ev) {//mouse up means not moving comp
     if (!curConnection) {
       [x, y] = getSchPos(ev);
       if (x > 0) {//can only embed in the area where x > 0

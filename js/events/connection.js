@@ -100,7 +100,7 @@ function schEvents() {
     }
   });
 
-  $('#svg').mousedown(function (ev) {
+  $('#svg').on('mousedown touchstart', function (ev) {
     if (!curConnection) {
       for (let key in pointsList) {//当得到两个点坐标之后清空存储点的数组
         pointsList.pop();
@@ -131,7 +131,7 @@ function schEvents() {
         if (pointsList.length >= 2) {
           defineComponent('line').has('line', [pointsList[0]._x, pointsList[0]._y, pointsList[1]._x, pointsList[0]._y]).has('line', [pointsList[1]._x, pointsList[0]._y, pointsList[1]._x, pointsList[1]._y]);
           lineList.push(drawComponent('line', 0, 0).moveTo(x - pointsList[1]._x, y - pointsList[1]._y)
-          .mousedown(function (ev) {
+          .on('mousedown touchstart', function (ev) {
             if ($(this).hasSelected() == true) {
               $(this).removeSelected();
             }

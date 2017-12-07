@@ -30,6 +30,8 @@ function schEvents() {
         for (let i = 0; i < lineList.length; i++) {
           if (lineList[i].hasSelected() == true) {
             lineList[i].removeIt();
+            lineList.splice(i,1);
+            //console.log(lineList.length);
           }
         }
         break;      
@@ -43,7 +45,7 @@ function schEvents() {
           }
         }
         break;
-      case 67://c
+      /*case 67://c
         for(let i=0; i<lineList.length; i++) {
           if(lineList[i].hasSelected() == true) {
             //console.log("1111");
@@ -94,7 +96,7 @@ function schEvents() {
             }
           }
         }
-        break;  
+        break;  */
     }
   });
 
@@ -134,11 +136,14 @@ function schEvents() {
               $(this).removeSelected();
             }
             else {
-              $(this).hasSelected();
+              $(this).addSelected();
             }
           }));//将画出的连接线加到lineList里
           for (let key in pointsList) {//当得到两个点坐标之后清空存储点的数组
             pointsList.pop();
+          }
+          for(let i =0;i < delList.length;i++) {
+            delList[i].removeIt();
           }
         }
       }

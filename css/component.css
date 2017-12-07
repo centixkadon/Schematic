@@ -1,8 +1,26 @@
 
-#svgButton g, #svgSch g {
+#svgComponents {
+  cursor: pointer;
+}
+
+#svgComponents g {
   stroke: #A00;
   stroke-width: 2;
   fill: none;
+}
+
+#svgComponents circle[r="1"] {
+  stroke: #500;
+  cursor: pointer;
+}
+
+#svgComponents text {
+  stroke-width: 0;
+  fill: #A00;
+}
+
+#svgComponents.components-canbeselected {
+  cursor: pointer;
 }
 
 #svgSch .component-selected {

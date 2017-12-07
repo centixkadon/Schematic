@@ -168,3 +168,27 @@ drawButton('gnd');
 ### 预期目标
 
 无测试代码，网页行为与预期相符即可。
+
+## 4. CSS
+
+### 预期目标1：元器件选择/取消选择样式切换
+
+```javascript
+// 以下代码可以将元器件样式切换成选择状态。
+componentVcc.addClass('component-selected');           // 返回componentVcc
+```
+```javascript
+// 以下代码可以将元器件样式切换成未选择状态。
+componentVcc.removeClass('component-selected');        // 返回componentVcc
+```
+
+### 预期目标2：元器件光标样式切换
+
+```javascript
+// 以下代码可以在指向所有元器件时，显示小手光标。
+$('#svgComponents').addClass('components-canbeselected');
+```
+```javascript
+// 以下代码可以仅在指向所有元器件的连接点时，显示小手光标。
+$('#svgComponents').removeClass('components-canbeselected');
+```

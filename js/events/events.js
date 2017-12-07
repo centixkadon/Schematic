@@ -44,8 +44,8 @@ function initEvents() {
                     }
                     [a, b] = getSchPos(ev);
                     let point = [];
-                    point._x = $(this).getMove().x;
-                    point._y = $(this).getMove().y;
+                    point._x = a;
+                    point._y = b;
                     pointsList.push(point);
 
                     if(pointsList.length < 2 ) {

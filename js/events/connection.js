@@ -45,7 +45,7 @@ function schEvents() {
           }
         }
         break;
-      /*case 67://c
+      case 67://c
         for(let i=0; i<lineList.length; i++) {
           if(lineList[i].hasSelected() == true) {
             //console.log("1111");
@@ -96,7 +96,7 @@ function schEvents() {
             }
           }
         }
-        break;  */
+        break;  
     }
   });
 

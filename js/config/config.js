@@ -5,7 +5,7 @@ var schConfig = {
       size: 50,
       col: 2,
     },
-    innerSize: { width: 1100, height: 440 },
+    innerSize: { width: 1100, height: 660 },
   },
   componentsScale: 1,
 };

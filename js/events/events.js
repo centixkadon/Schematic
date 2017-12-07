@@ -48,7 +48,7 @@ function initEvents() {
                     point._y = $(this).getMove().y;
                     pointsList.push(point);
 
-                    if(pointsList.length < 2) {
+                    if(pointsList.length < 2 ) {
                       $('#svg').mousemove(function (ev) {
                         if(pointsList.length>0) {
                           for(let i =0;i < delList.length - 1;i++) {
@@ -59,34 +59,6 @@ function initEvents() {
                         //defineComponent('line1').has('line', [pointsList[0]._x, pointsList[0]._y, pointsList[0]._x, d]).has('line', [pointsList[0]._x, d, c, d]);
                         defineComponent('line1').has('line', [pointsList[0]._x, pointsList[0]._y, c, pointsList[0]._y]).has('line', [c, pointsList[0]._y, c, d]);
                         delList.push(drawComponent('line1', 0, 0).moveTo(0, 0));
-                        /*
-                        if(pointsList.length > 0) {
-                           $('body').keydown(function (ev) {
-                            if(curConnection) {
-                              switch (ev.which) {
-                              case 67://c
-                              if(!connectStyle) {
-                                console.log(connectStyle);
-                                for(let i =0;i < delList.length;i++) {
-                                  delList[i].removeIt();
-                                }
-                                defineComponent('line1').has('line', [pointsList[0]._x, pointsList[0]._y, pointsList[0]._x, d]).has('line', [pointsList[0]._x, d, c, d]);
-                                delList.push(drawComponent('line1', 0, 0).moveTo(0, 0));
-                                connectStyle = !connectStyle;
-                              }
-                              else if(connectStyle){
-                                for(let i =0;i < delList.length;i++) {
-                                  delList[i].removeIt();
-                                }
-                                defineComponent('line1').has('line', [pointsList[0]._x, pointsList[0]._y, c, pointsList[0]._y]).has('line', [c, pointsList[0]._y, c, d]);
-                                delList.push(drawComponent('line1', 0, 0).moveTo(0, 0));
-                                connectStyle = !connectStyle;
-                              }
-                                break;
-                              }
-                            }
-                        });
-                      }*/
 
                         }
 
@@ -100,18 +72,64 @@ function initEvents() {
                       connectStyle = false;
                       defineComponent('line').has('line', [pointsList[0]._x, pointsList[0]._y, pointsList[1]._x, pointsList[0]._y])
                         .has('line', [pointsList[1]._x, pointsList[0]._y, pointsList[1]._x, pointsList[1]._y]);
-                      lineList.push(drawComponent('line', 0, 0).moveTo(0, 0).mousedown(function (ev) {
-                        if ($(this).hasSelected() == true) {
-                          $(this).removeSelected();
-                        }
-                        else {
-                          $(this).addSelected();
-                        }
-                      }));//将画出的连接线加到lineList里
+                        //temp = drawComponent('line', 0, 0).moveTo(0, 0);
+
+                        lineList.push(drawComponent('line', 0, 0).moveTo(0, 0).mousedown(function (ev) {
+                          if ($(this).hasSelected() == true) {
+                            $(this).removeSelected();
+                          }
+                          else {
+                            $(this).addSelected();
+                          }
+                        }));
+                        /*
+                        temp.keydown(function (ev) { //在连接线被选中的情况下 按下c可以转换连接形式
+                          console.log("1111");
+                          if(!curConnection) {
+                            if(clist.length == 2) {
+                              switch (ev.which) {
+                                case 67://c
+                                if(!connectStyle) {
+                                  lineList.pop().removeIt();
+                                  //console.log(clist.length);
+                                  defineComponent('line').has('line', [clist[0]._x, clist[0]._y, clist[0]._x, clist[1]._y])
+                                  .has('line', [clist[0]._x, clist[1]._y, clist[1]._x, clist[1]._y]);
+                                  lineList.push(drawComponent('line', 0, 0).moveTo(0, 0).mousedown(function (ev) {
+                                    if ($(this).hasSelected() == true) {
+                                      $(this).removeSelected();
+                                    }
+                                    else {
+                                      $(this).addSelected();
+                                    }
+                                }));
+                                  connectStyle = !connectStyle;
+                                  //console.log(connectStyle);
+                                }
+                                else if(connectStyle){
+                                  lineList.pop().removeIt();
+                                  defineComponent('line').has('line', [clist[0]._x, clist[0]._y, clist[1]._x, clist[0]._y])
+                                  .has('line', [clist[1]._x, clist[0]._y, clist[1]._x, clist[1]._y]);
+                                  lineList.push(drawComponent('line', 0, 0).moveTo(0, 0).mousedown(function (ev) {
+                                    if ($(this).hasSelected() == true) {
+                                      $(this).removeSelected();
+                                    }
+                                    else {
+                                      $(this).addSelected();
+                                    }
+                                }));
+                                  connectStyle = !connectStyle;
+                                  //console.log(connectStyle);  
+                                }
+                              break;
+                              }
+                            } 
+                          }
+                        });*/
+
 
                       clist[0] = pointsList[0];
                       clist[1] = pointsList[1];
-                      for (let i = 0; i<pointsList.length; i++) {//当得到两个点坐标之后清空存储点的数组
+                      for (let key in pointsList) {//当得到两个点坐标之后清空存储点的数组
                         //clist[i] = pointsList[i];
                         pointsList.pop();
                       }

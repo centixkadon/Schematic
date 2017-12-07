@@ -92,46 +92,21 @@ function schEvents() {
     }
   });
 
-$('body').keydown(function (ev) { //在连接线被选中的情况下 按下c可以转换连接形式
-  //console.log(connectStyle);
-  switch (ev.which) {
-    case 67:
-    if(!connectStyle) {
-      lineList.pop().removeIt();
-      //console.log(clist.length);
-      defineComponent('line').has('line', [clist[0]._x, clist[0]._y, clist[0]._x, clist[1]._y])
-      .has('line', [clist[0]._x, clist[1]._y, clist[1]._x, clist[1]._y]);
-      lineList.push(drawComponent('line', 0, 0).moveTo(0, 0));
-      connectStyle = !connectStyle;
-      //console.log(connectStyle);
-    }
-    else if(connectStyle){
-      lineList.pop().removeIt();
-      defineComponent('line').has('line', [clist[0]._x, clist[0]._y, clist[1]._x, clist[0]._y])
-      .has('line', [clist[1]._x, clist[0]._y, clist[1]._x, clist[1]._y]);
-      lineList.push(drawComponent('line', 0, 0).moveTo(0, 0));
-      connectStyle = !connectStyle;
-      //console.log(connectStyle);
-    }
-    break;
-
-  }
-})
-}
-
-$('body').keydown(function (ev) {
-  if(curConnection) {
-    switch (ev.which) {
-    case 27://esc
-      for(let i =0; i < delList.length; i++) {
-        delList[i].removeIt();
-        for (let key in pointsList) {//当得到两个点坐标之后清空存储点的数组
-          pointsList.pop();
+  
+  $('body').keydown(function (ev) {
+    if(curConnection) {
+      switch (ev.which) {
+      case 27://esc
+        for(let i =0; i < delList.length; i++) {
+          delList[i].removeIt();
+          for (let key in pointsList) {//当得到两个点坐标之后清空存储点的数组
+            pointsList.pop();
+          }
         }
+        break;
       }
-      break;
     }
-  }
-});
+  });
 
+}
 

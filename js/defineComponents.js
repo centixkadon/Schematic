@@ -19,5 +19,6 @@ defineComponent('测试用大杂烩元器件')
 //add by liming 0.0
 defineComponent('hongZhong').has('rect', [-18, -20, 36, 40]).has('polygon', [-11, 0, 11, 0, 13, -10, -13, -10]).has('line', [0, -18, 0, 18]);
 defineComponent('beiFeng').has('rect', [-18, -20, 36, 40]).has('line', [-4, -10, -4, 10], [4, -10, 4, 10], [-10, 0, -4, 0], [4, 0, 10, 0], [-18, 10, -4, 10], [4, 10, 18, 10]);
-defineComponent('huaji').has('circle', [0, 0, 20]).has('line', [-15, -6, -10, -12], [-10, -12, -5, -6], [5, -6, 10, -12], [10, -12, 15, -6], [-8, 6, 0, 12], [0, 12, 8, 6]).has('point', [-15, -6], [5,-6]);
+defineComponent('huaji').has('circle', [0, 0, 20]).has('line', [-15, -6, -10, -12], [-10, -12, -5, -6], [5, -6, 10, -12], [10, -12, 15, -6], [-8, 6, 0, 12], [0, 12, 8, 6]).has('point', [-15, -6], [5, -6]);
+defineComponent('weixiao').has('circle', [0, 0, 20],[-10,-8,3],[10,-8,3]).has('line', [-8, 6, 0, 12], [0, 12, 8, 6]).has('point', [-10, -8], [10, -8]);
 defineComponent('Benz').has('circle',[50,50,20]).has('line',[50,50,50,30]).has('line',[50,50,70,59]).has('line',[50,50,30,59]);

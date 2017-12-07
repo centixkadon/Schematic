@@ -1,8 +1,4 @@
 
-#svgComponents {
-  cursor: pointer;
-}
-
 #svgComponents g {
   stroke: #A00;
   stroke-width: 2;

@@ -108,5 +108,64 @@ function schEvents() {
     }
   });
 
+  $('body').keydown(function (ev) { //在连接线被选中的情况下 按下c可以转换连接形式
+    for(let i=0; i<lineList.length; i++) {
+      if(lineList[i].hasSelected() == true) {
+        //console.log("1111");
+        if(!curConnection) {
+          if(clist.length == 2) {
+            switch (ev.which) {
+              case 67://c
+              if(!connectStyle) {
+
+                for( let i=0; i<lineList.length;i++) {
+                  if(lineList[i].hasSelected() == true)
+                    lineList[i].removeIt();
+                }
+                //lineList.pop().removeIt();
+                //console.log(clist.length);
+                defineComponent('line').has('line', [clist[0]._x, clist[0]._y, clist[0]._x, clist[1]._y])
+                .has('line', [clist[0]._x, clist[1]._y, clist[1]._x, clist[1]._y]);
+                lineList.push(drawComponent('line', 0, 0).moveTo(0, 0).mousedown(function (ev) {
+                  if ($(this).hasSelected() == true) {
+                    $(this).removeSelected();
+                  }
+                  else {
+                    $(this).addSelected();
+                  }
+              }));
+                connectStyle = !connectStyle;
+                //console.log(connectStyle);
+              }
+              else if(connectStyle){
+                for( let i=0; i<lineList.length;i++) {
+                  if(lineList[i].hasSelected() == true)
+                    lineList[i].removeIt();
+                }
+                //lineList.pop().removeIt();
+                defineComponent('line').has('line', [clist[0]._x, clist[0]._y, clist[1]._x, clist[0]._y])
+                .has('line', [clist[1]._x, clist[0]._y, clist[1]._x, clist[1]._y]);
+                lineList.push(drawComponent('line', 0, 0).moveTo(0, 0).mousedown(function (ev) {
+                  if ($(this).hasSelected() == true) {
+                    $(this).removeSelected();
+                  }
+                  else {
+                    $(this).addSelected();
+                  }
+              }));
+                connectStyle = !connectStyle;
+                //console.log(connectStyle);  
+              }
+            break;
+            }
+          } 
+        }
+      }
+    }
+    
+  });
+
+
+
 }
 

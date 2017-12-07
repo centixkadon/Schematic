@@ -72,7 +72,7 @@ function initEvents() {
                       connectStyle = false;
                       defineComponent('line').has('line', [pointsList[0]._x, pointsList[0]._y, pointsList[1]._x, pointsList[0]._y])
                         .has('line', [pointsList[1]._x, pointsList[0]._y, pointsList[1]._x, pointsList[1]._y]);
-                        //temp = drawComponent('line', 0, 0).moveTo(0, 0);
+                        //let temp = drawComponent('line', 0, 0).moveTo(0, 0);
 
                         lineList.push(drawComponent('line', 0, 0).moveTo(0, 0).mousedown(function (ev) {
                           if ($(this).hasSelected() == true) {
@@ -82,8 +82,8 @@ function initEvents() {
                             $(this).addSelected();
                           }
                         }));
-                        /*
-                        temp.keydown(function (ev) { //在连接线被选中的情况下 按下c可以转换连接形式
+
+                        lineList[0].keydown(function (ev) { //在连接线被选中的情况下 按下c可以转换连接形式
                           console.log("1111");
                           if(!curConnection) {
                             if(clist.length == 2) {
@@ -124,7 +124,7 @@ function initEvents() {
                               }
                             } 
                           }
-                        });*/
+                        });
 
 
                       clist[0] = pointsList[0];

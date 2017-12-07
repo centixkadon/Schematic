@@ -215,7 +215,7 @@ function initEvents() {
               centerY = centerY / schCompModel.length;
               for (let i = 0; i < schCompModel.length; i++) {
                 schCompModel[i].rotateBy(90);
-                scschCompModel[i].moveTo(centerX + centerY - schCompModel[i].getMove().y, schCompModel[i].getMove().x - centerX + centerY);
+                schCompModel[i].moveTo(centerX + centerY - schCompModel[i].getMove().y, schCompModel[i].getMove().x - centerX + centerY);
               }
             }
             else {

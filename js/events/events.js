@@ -148,6 +148,14 @@ function initEvents() {
         //break;
         case 27://esc
           switch (schCurrent) {
+            case schState.none:
+              if (schCompModel != undefined) {
+                for (let i = 0; i < schCompModel.length; i++) {
+                  schCompModel[i].removeSelected();//cancel all selected
+                }
+                schCompModel = undefined;
+              }
+              break;
             case schState.placing://esc in placing state
               schCurrent = schState.none;//cancel placing
               if (schCompModel != undefined) {

@@ -19,7 +19,7 @@ defineComponent('mul').has('circle', [0, 0, 14]).has('line',[9.9, 9.9, -9.9, -9.
 defineComponent('plus').has('circle', [0, 0, 14]).has('line',[0, 14, 0, -14], [14, 0, -14, 0],[-20, 0 ,-14, 0],[20, 0, 14, 0]).has('point',[-20,0],[20,0]);
 
 //qmy
-
+defineComponent('反向放大器').has('line', [-20, 0, -10, 0], [-10, 20, -10, -20], [-10, 20, 10, 0], [-10, -20, 10, 0], [0, 10, 0, 20]).has('point', [-10, 0], [10, 0]);
 
 defineComponent('Voltage regulator diode').has('polygon', [-10, 8, -10, -8, 10, 0]).has('line', [10, 10, 10, -10], [-20, 0, 20, 0], [10, 10, 5, 10]).has('point', [-20, 0], [20, 0]);
 defineComponent('Voltmeter').has('line', [13, 0, 20, 0], [-13, 0, -20, 0]).has('polyline', [-5, -7, 0, 7, 5, -7]).has('circle', [0, 0, 13]).has('point', [-20, 0], [20, 0]);

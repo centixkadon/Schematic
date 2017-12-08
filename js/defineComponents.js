@@ -27,6 +27,13 @@ defineComponent('Ammeter').has('line', [13, 0, 20, 0], [-13, 0, -20, 0], [-3, 0,
 defineComponent('light-emitting diode').has('polygon', [-10, 8, -10, -8, 10, 0]).has('line', [10, 10, 10, -10], [-20, 0, 20, 0], [-2, -10, 6, -18], [5, -10, 13, -18]).has('polyline', [6, -14, 6, -18, 2, -18], [13, -14, 13, -18, 9, -18]).has('point', [-20, 0], [20, 0]);
 defineComponent('Varactor diode').has('polygon', [-10, 8, -10, -8, 10, 0]).has('line', [10, 10, 10, -10], [14, 10, 14, -10], [-20, 0, 10, 0], [14, 0, 20, 0]).has('point', [-20, 0], [20, 0]);
 
+//logic gate
+defineComponent('andGate').has('arc', [0, -10, 10, 0, 1, 0, 10]).has('line', [-13, -10, 0, -10], [-13, 10, 0, 10], [-13, -10, -13, 10], [-20, 8, -13, 8], [-20, -8, -13, -8], [10, 0, 20, 0]).has('point', [-20, -8], [-20, 8], [20, 0]);
+defineComponent('nandGate').has('arc', [0, -10, 10, 0, 1, 0, 10]).has('circle', [12, 0, 2]).has('line', [-13, -10, 0, -10], [-13, 10, 0, 10], [-13, -10, -13, 10], [-20, 8, -13, 8], [-20, -8, -13, -8], [14, 0, 20, 0]).has('point', [-20, -8], [-20, 8], [20, 0]);
+defineComponent('notGate').has('polygon', [-10, 8, -10, -8, 10, 0]).has('circle', [12, 0, 2]).has('line', [-20, 0, -10, 0], [14, 0, 20, 0]).has('point', [-20, 0], [20, 0]);
+defineComponent('orGate').has('arc', [0 - 7.5 * Math.sqrt(3), -10 * Math.sqrt(3) + 7.5, 25, 0, 1, 0 - 7.5 * Math.sqrt(3), 10 * Math.sqrt(3) - 7.5], [0 - 7.5 * Math.sqrt(3), -10 * Math.sqrt(3) + 7.5, 25, 0, 1, 10, 0], [10, 0, 25, 0, 1, 0 - 7.5 * Math.sqrt(3), 10 * Math.sqrt(3) - 7.5]).has('line', [10, 0, 20, 0], [-20, -8, -12.5, -8], [-20, 8, -12.5, 8]).has('point', [-20, -8], [-20, 8], [20, 0]);
+defineComponent('norGate').has('arc', [0 - 7.5 * Math.sqrt(3), -10 * Math.sqrt(3) + 7.5, 25, 0, 1, 0 - 7.5 * Math.sqrt(3), 10 * Math.sqrt(3) - 7.5], [0 - 7.5 * Math.sqrt(3), -10 * Math.sqrt(3) + 7.5, 25, 0, 1, 10, 0], [10, 0, 25, 0, 1, 0 - 7.5 * Math.sqrt(3), 10 * Math.sqrt(3) - 7.5]).has('circle', [12, 0, 2]).has('line', [14, 0, 20, 0], [-20, -8, -12.5, -8], [-20, 8, -12.5, 8]).has('point', [-20, -8], [-20, 8], [20, 0]);
+
 // 以下测试用
 defineComponent('电压源').has('line', [0, -20, 0, 20]).has('circle', [0, 0, 13]).has('point', [0, -20], [0, 20]);
 defineComponent('电流源').has('line', [0, -13, 0, -20], [-13, 0, 13, 0], [0, 13, 0, 20]).has('circle', [0, 0, 13]).has('point', [0, -20], [0, 20]);

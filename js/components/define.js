@@ -55,13 +55,17 @@ Array.prototype.has = function (componentName) {
       break;
     case 'arc':
       for (let i = 1; i < arguments.length; ++i) {
-        if (!((arguments[i] instanceof Array) && (arguments[i].length % 5 === 2))) {
-          throw ".has('arc', [x1, y1, r1, isLargeArc1, isClockwise1, ..., xn, yn ], ...) 使用出错，例子参照 https://github.com/centixkadon/Schematic/blob/master/js/README.md";
+        if (!((arguments[i] instanceof Array) && (arguments[i].length % 3 === 2))) {
+          throw ".has('arc', [x1, y1, [isClockwise1, r1, isLargeArc1], ..., xn, yn ], ...) 使用出错，例子参照 https://github.com/centixkadon/Schematic/blob/master/js/README.md";
         }
         let [x, y] = arguments[i].slice(0, 2);
         let d = 'M ' + x + ' ' + y;
-        for (let j = 2; j < arguments[i].length; j += 5) {
-          let [r, isLargeArc, isClockwise, x, y] = arguments[i].slice(j, j + 5);
+        for (let j = 2; j < arguments[i].length; j += 3) {
+          let [[isClockwise, r, isLargeArc], x, y] = arguments[i].slice(j, j + 3);
+          console.log('isClockwise: ' + isClockwise + ', isLargeArc: ' + isLargeArc);
+          if (r === undefined) r = 1;
+          if (isClockwise === undefined) isClockwise = 1;
+          if (isLargeArc === undefined) isLargeArc = 0;
           d += ' A ' + r + ' ' + r + ' 0 ' + isLargeArc + ' ' + isClockwise + ' ' + x + ' ' + y;
         }
         this.push({

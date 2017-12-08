@@ -3,9 +3,9 @@ var schConfig = {
   svg: {
     button: {
       size: 50,
-      col: 3,
+      col: 4,
     },
-    innerSize: { width: 1100, height: 550 },
+    innerSize: { width: 1110, height: 500 },
   },
   componentsScale: 1,
 };

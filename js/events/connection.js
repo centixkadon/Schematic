@@ -29,8 +29,8 @@ function schEvents() {
         break;
       case 46://del 
         for (let i = 0; i < lineList.length; i++) {
-          if (lineList[i].hasSelected() == true) {
-            lineList[i].removeIt();
+          if (lineList[i][0].hasSelected() == true) {
+             lineList[i][0].removeIt();
             lineList.splice(i,1);
             //console.log(lineList.length);
           }

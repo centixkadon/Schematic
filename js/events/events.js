@@ -185,6 +185,7 @@ function initEvents() {
               schCompModel[i].removeSelected();
               schCompModel[i].removeIt();//remove all selected models
             }
+            console.log(schCompModel.length);
           }
           break;
         case 81://Q
@@ -241,6 +242,18 @@ function initEvents() {
             }
           }
           break;
+        case 88://X
+          if (ev.ctrlKey) {//ctrl+x
+            if (schCompModel != undefined) {
+              schCompModelCopy = schCompModel;
+              for (let i = 0; i < schCompModel.length; i++) {
+                schCompModel[i].removeSelected();
+                //schCompModel[i].removeIt();//remove all selected models
+              }
+               console.log(schCompModel.length);
+            }
+          }
+          break;
         case 86://V
           if (ev.ctrlKey) {//ctrl+v
             switch (schCurrent) {
@@ -252,7 +265,9 @@ function initEvents() {
                     }
                     schCompModel = undefined;
                   }//clear schModelComp, cancel all selected
+                  console.log(schCompModelCopy.length);
                   for (let i = 0; i < schCompModelCopy.length; i++) {
+                    console.log(i, schCompModelCopy[i].getName(), schCompModelCopy[i].getMove().x, schCompModelCopy[i].getMove().y);
                     tempComp = drawComponent(schCompModelCopy[i].getName(), schCompModelCopy[i].getMove().x, schCompModelCopy[i].getMove().y)
                     tempComp.on('mousedown touchstart', function (ev) {
                       switch (schCurrent) {

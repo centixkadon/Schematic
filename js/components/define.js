@@ -70,7 +70,6 @@ Array.prototype.has = function (componentName) {
         let d = 'M ' + x + ' ' + y;
         for (let j = 2; j < arguments[i].length; j += 3) {
           let [[isClockwise, r, isLargeArc], x, y] = arguments[i].slice(j, j + 3);
-          console.log('isClockwise: ' + isClockwise + ', isLargeArc: ' + isLargeArc);
           if (r === undefined) r = 1;
           if (isClockwise === undefined) isClockwise = 1;
           if (isLargeArc === undefined) isLargeArc = 0;

@@ -28,11 +28,11 @@ defineComponent('light-emitting diode').has('polygon', [-10, 8, -10, -8, 10, 0])
 defineComponent('Varactor diode').has('polygon', [-10, 8, -10, -8, 10, 0]).has('line', [10, 10, 10, -10], [14, 10, 14, -10], [-20, 0, 10, 0], [14, 0, 20, 0]).has('point', [-20, 0], [20, 0]);
 
 //logic gate
-defineComponent('andGate').has('arc', [0, -10, 10, 0, 1, 0, 10]).has('line', [-13, -10, 0, -10], [-13, 10, 0, 10], [-13, -10, -13, 10], [-20, 8, -13, 8], [-20, -8, -13, -8], [10, 0, 20, 0]).has('point', [-20, -8], [-20, 8], [20, 0]);
-defineComponent('nandGate').has('arc', [0, -10, 10, 0, 1, 0, 10]).has('circle', [12, 0, 2]).has('line', [-13, -10, 0, -10], [-13, 10, 0, 10], [-13, -10, -13, 10], [-20, 8, -13, 8], [-20, -8, -13, -8], [14, 0, 20, 0]).has('point', [-20, -8], [-20, 8], [20, 0]);
-defineComponent('notGate').has('polygon', [-10, 8, -10, -8, 10, 0]).has('circle', [12, 0, 2]).has('line', [-20, 0, -10, 0], [14, 0, 20, 0]).has('point', [-20, 0], [20, 0]);
-defineComponent('orGate').has('arc', [0 - 7.5 * Math.sqrt(3), -10 * Math.sqrt(3) + 7.5, 25, 0, 1, 0 - 7.5 * Math.sqrt(3), 10 * Math.sqrt(3) - 7.5], [0 - 7.5 * Math.sqrt(3), -10 * Math.sqrt(3) + 7.5, 25, 0, 1, 10, 0], [10, 0, 25, 0, 1, 0 - 7.5 * Math.sqrt(3), 10 * Math.sqrt(3) - 7.5]).has('line', [10, 0, 20, 0], [-20, -8, -12.5, -8], [-20, 8, -12.5, 8]).has('point', [-20, -8], [-20, 8], [20, 0]);
-defineComponent('norGate').has('arc', [0 - 7.5 * Math.sqrt(3), -10 * Math.sqrt(3) + 7.5, 25, 0, 1, 0 - 7.5 * Math.sqrt(3), 10 * Math.sqrt(3) - 7.5], [0 - 7.5 * Math.sqrt(3), -10 * Math.sqrt(3) + 7.5, 25, 0, 1, 10, 0], [10, 0, 25, 0, 1, 0 - 7.5 * Math.sqrt(3), 10 * Math.sqrt(3) - 7.5]).has('circle', [12, 0, 2]).has('line', [14, 0, 20, 0], [-20, -8, -12.5, -8], [-20, 8, -12.5, 8]).has('point', [-20, -8], [-20, 8], [20, 0]);
+// defineComponent('andGate').has('arc', [0, -10, 10, 0, 1, 0, 10]).has('line', [-13, -10, 0, -10], [-13, 10, 0, 10], [-13, -10, -13, 10], [-20, 8, -13, 8], [-20, -8, -13, -8], [10, 0, 20, 0]).has('point', [-20, -8], [-20, 8], [20, 0]);
+// defineComponent('nandGate').has('arc', [0, -10, 10, 0, 1, 0, 10]).has('circle', [12, 0, 2]).has('line', [-13, -10, 0, -10], [-13, 10, 0, 10], [-13, -10, -13, 10], [-20, 8, -13, 8], [-20, -8, -13, -8], [14, 0, 20, 0]).has('point', [-20, -8], [-20, 8], [20, 0]);
+// defineComponent('notGate').has('polygon', [-10, 8, -10, -8, 10, 0]).has('circle', [12, 0, 2]).has('line', [-20, 0, -10, 0], [14, 0, 20, 0]).has('point', [-20, 0], [20, 0]);
+// defineComponent('orGate').has('arc', [0 - 7.5 * Math.sqrt(3), -10 * Math.sqrt(3) + 7.5, 25, 0, 1, 0 - 7.5 * Math.sqrt(3), 10 * Math.sqrt(3) - 7.5], [0 - 7.5 * Math.sqrt(3), -10 * Math.sqrt(3) + 7.5, 25, 0, 1, 10, 0], [10, 0, 25, 0, 1, 0 - 7.5 * Math.sqrt(3), 10 * Math.sqrt(3) - 7.5]).has('line', [10, 0, 20, 0], [-20, -8, -12.5, -8], [-20, 8, -12.5, 8]).has('point', [-20, -8], [-20, 8], [20, 0]);
+// defineComponent('norGate').has('arc', [0 - 7.5 * Math.sqrt(3), -10 * Math.sqrt(3) + 7.5, 25, 0, 1, 0 - 7.5 * Math.sqrt(3), 10 * Math.sqrt(3) - 7.5], [0 - 7.5 * Math.sqrt(3), -10 * Math.sqrt(3) + 7.5, 25, 0, 1, 10, 0], [10, 0, 25, 0, 1, 0 - 7.5 * Math.sqrt(3), 10 * Math.sqrt(3) - 7.5]).has('circle', [12, 0, 2]).has('line', [14, 0, 20, 0], [-20, -8, -12.5, -8], [-20, 8, -12.5, 8]).has('point', [-20, -8], [-20, 8], [20, 0]);
 
 // 以下测试用
 defineComponent('电压源').has('line', [0, -20, 0, 20]).has('circle', [0, 0, 13]).has('point', [0, -20], [0, 20]);
@@ -52,4 +52,4 @@ defineComponent('weixiao').has('circle', [0, 0, 20],[-10,-8,3],[10,-8,3]).has('l
 defineComponent('Benz').has('circle', [0, 0, 20]).has('line', [0, 0, 0, -20], [0, 0, 20 * Math.sin(Math.PI / 3), 20 * Math.cos(Math.PI / 3)], [0, 0, 20 * Math.sin(-Math.PI / 3), 20 * Math.cos(-Math.PI / 3)]);
 //add by Seki =.=
 defineComponent('Facai').has('line', [-16, -16, -2, -16], [-2, -16, -18, -4], [-16, -12, -10, -8], [2, -16, 17, -5], [5, -11, 10, -18], [9, -9, 14, -16]).has('polyline', [-16, 0, -2, 0, -2, 5, -16, 5, -16, 10, -2, 10, -2, 18, -16, 18]).has('polyline', [2, 5, 5, 5, 5, 0, 12, 0, 12, 5, 16, 5]).has('polyline', [16, 18, 2, 10, 15, 10, 4, 18]).has('line', [16, 18, 18, 18]).has('rect', [-20, -20, 40, 40]);
-defineComponent('Taichi').has('circle', [0, 0, 20], [0, 10, 3], [0, -10, 3]).has('arc', [0, -20, [1], 0, 0, [0], 0, 20]);
+defineComponent('Taichi').has('circle', [0, 0, [15, 20]], [0, 10, [3, 6]], [0, -10, [6, 3]]).has('arc', [0, -20, [1], 0, 0, [0], 0, 20]);

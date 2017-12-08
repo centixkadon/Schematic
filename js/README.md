@@ -42,6 +42,12 @@ defineComponent('blablabla')                           // 定义名字为blablab
                                                        // isLargeArc_i      指定圆弧是否大于180度，不写则默认否
                                                        // isClockwise_i     指定圆弧是否顺时针，不写则默认是
                                                        // 若 [] 内三个参数均不写，仍需要保留 []
+
+.has('circle', [x, y, [rx, ry]], ...)                  // 添加椭圆
+.has('arc', [x1, y1, [isClockwise1, [rx1, ry1, rt1], isLargeArc1], x2, y2, ..., xn, yn ], ...) // 添加连续椭圆弧
+                                                       // rx_i              指定椭圆弧的x轴
+                                                       // ry_i              指定椭圆弧的y轴，不写则默认是rx_i
+                                                       // rt_i              指定椭圆弧的旋转角，不写则默认是0
 ```
 ```javascript
 // 将以下代码复制到 js/test/test.js 中，应在schComponents结构体中添加一个很蠢的元器件。

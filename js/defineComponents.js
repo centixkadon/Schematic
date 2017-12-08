@@ -16,6 +16,9 @@ defineComponent('MOS4').has('line', [-15, 0, 0, 0], [0, 0, 0, 7], [5, 3, 5, -3],
 defineComponent('OPAMP').has('line',[-20,10,-10,10], [-20,-10,-10,-10], [-10,20,-10,-20], [-10,20,10,0], [-10,-20,10,0], [0,10,0,20], [0,-10,0,-20], [10,0,20,0], [-9,10,-5,10], [-7,-13,-7,-7], [-9,-10,-5,-10]).has('point',[-20,10],[-20,-10],[0,20],[0,-20],[20,0]);
 defineComponent('mul').has('circle', [0, 0, 14]).has('line',[9.9, 9.9, -9.9, -9.9], [9.9, -9.9, -9.9, 9.9]);
 
+//qmy
+
+
 defineComponent('Voltage regulator diode').has('polygon', [-10, 8, -10, -8, 10, 0]).has('line', [10, 10, 10, -10], [-20, 0, 20, 0], [10, 10, 5, 10]).has('point', [-20, 0], [20, 0]);
 defineComponent('Voltmeter').has('line', [13, 0, 20, 0], [-13, 0, -20, 0]).has('polyline', [-5, -7, 0, 7, 5, -7]).has('circle', [0, 0, 13]).has('point', [-20, 0], [20, 0]);
 defineComponent('Ammeter').has('line', [13, 0, 20, 0], [-13, 0, -20, 0], [-3, 0, 3, 0]).has('polyline', [-6, 7, 0, -7, 6, 7]).has('circle', [0, 0, 13]).has('point', [-20, 0], [20, 0]);

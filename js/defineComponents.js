@@ -43,4 +43,4 @@ defineComponent('weixiao').has('circle', [0, 0, 20],[-10,-8,3],[10,-8,3]).has('l
 defineComponent('Benz').has('circle', [0, 0, 20]).has('line', [0, 0, 0, -20], [0, 0, 20 * Math.sin(Math.PI / 3), 20 * Math.cos(Math.PI / 3)], [0, 0, 20 * Math.sin(-Math.PI / 3), 20 * Math.cos(-Math.PI / 3)]);
 //add by Seki =.=
 defineComponent('Facai').has('line', [-16, -16, -2, -16], [-2, -16, -18, -4], [-16, -12, -10, -8], [2, -16, 17, -5], [5, -11, 10, -18], [9, -9, 14, -16]).has('polyline', [-16, 0, -2, 0, -2, 5, -16, 5, -16, 10, -2, 10, -2, 18, -16, 18]).has('polyline', [2, 5, 5, 5, 5, 0, 12, 0, 12, 5, 16, 5]).has('polyline', [16, 18, 2, 10, 15, 10, 4, 18]).has('line', [16, 18, 18, 18]).has('rect', [-20, -20, 40, 40]);
-defineComponent('Taichi').has('circle', [0, 0, 20], [0, 10, 3], [0, -10, 3]).has('arc', [0, -20, 0, 0, 10, 0, 1], [0, 20, 0, 0, 10, 0, 1]);
+defineComponent('Taichi').has('circle', [0, 0, 20], [0, 10, 3], [0, -10, 3]).has('arc', [0, -20, 10, 0, 1, 0, 0, 10, 0, 0, 0, 20]);

@@ -36,6 +36,11 @@ defineComponent('blablabla')                           // 定义名字为blablab
 .has('polyline', [x1, y1, x2, y2, ..., xn, yn], ...)   // 添加折线
 .has('polygon', [x1, y1, x2, y2, ..., xn, yn], ...)    // 添加多边形
 .has('point', [x, y], ...)                             // 添加点
+.has('arc', [x1, y1, r1, isLargeArc1, isClockwise1, x2, y2, ..., xn, yn ], ...) // 添加连续圆弧
+                                                       // x_i, y_i          指定连续圆弧经过的点
+                                                       // r_i               为 x_i, y_i 到 x_i+1, y_i+1 圆弧的半径
+                                                       // isLargeArc_i      指定圆弧是否大圆弧（大于180度）
+                                                       // isClockwise_i     指定圆弧是否顺时针
 ```
 ```javascript
 // 将以下代码复制到 js/test/test.js 中，应在schComponents结构体中添加一个很蠢的元器件。

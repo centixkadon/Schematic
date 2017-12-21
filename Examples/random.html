@@ -24,10 +24,7 @@
     var n1 = 001; // init min val
     var n2 = 100; // init max val
 
-    document.getElementById('n1').value = n1;
-    document.getElementById('n2').value = n2;
-    document.getElementsByTagName('body')[0].onkeydown = e => {
-      if (e.keyCode === 13) {
+    function trigger_timer() {
         if (tid === -1) {
           n1 = Math.trunc(document.getElementById('n1').value);
           n2 = Math.trunc(document.getElementById('n2').value) + 1;
@@ -38,8 +35,18 @@
           clearInterval(tid);
           tid = -1;
         }
+    }
+
+    document.getElementById('n1').value = n1;
+    document.getElementById('n2').value = n2;
+    var elem = document.getElementsByTagName('body')[0];
+    elem.onkeydown = e => {
+      if (e.keyCode === 13) {
+        trigger_timer();
       }
     };
+    var elem = document.getElementById('rd1');
+    elem.onclick = elem.ontouchstart = e => trigger_timer();
   </script>
 </body>
 
